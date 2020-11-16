@@ -1,0 +1,37 @@
+/**
+ * @author Michael Gamlem III
+ * @copyright This file is subject to the terms and conditions defined in file 'LICENSE', which is part of the source code for this project.
+ * @format
+ */
+
+@use "../../../styles/colors" as colors;
+@use "../../../styles/variables" as variables;
+
+.nav-button-container {
+	min-width: 40px;
+	height: 100%;
+	background-color: transparent;
+	padding: 0 8px;
+}
+
+.nav-button {
+	color: colors.$text-light;
+	font-size: variables.$font-size-h3;
+	padding: 0 6px;
+	height: 100%;
+	width: 100%;
+	font-family: variables.$theme-font-head;
+	font-weight: variables.$normal;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2px;
+	text-decoration: none;
+
+	a {
+		:hover {
+			text-emphasis: unset;
+			color: unset;
+		}
+	}
+}

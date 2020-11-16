@@ -1,0 +1,73 @@
+/**
+ * @author Michael Gamlem III
+ * @copyright This file is subject to the terms and conditions defined in file 'LICENSE', which is part of the source code for this project.
+ * @format
+ */
+
+@use "./variables" as variables;
+@use "./colors" as colors;
+
+* {
+	font-family: variables.$theme-font-body;
+	color: colors.$text-light;
+}
+
+.app {
+	font-family: variables.$theme-font-body;
+	color: colors.$text-light;
+	margin: 0;
+	width: 100vw;
+
+	section {
+		max-width: 100vw;
+		overflow: hidden;
+		content-visibility: auto;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-family: variables.$theme-font-head;
+		font-size: variables.$font-size-h1;
+		text-align: center;
+		line-height: 1.3em;
+		margin: 20px 0;
+		z-index: 2;
+	}
+
+	h2 {
+		font-size: variables.$font-size-h2;
+	}
+
+	h3 {
+		font-size: variables.$font-size-h3;
+	}
+
+	h4 {
+		font-size: variables.$font-size-h4;
+	}
+
+	p {
+		font-size: variables.$font-size-h3;
+		font-family: variables.$theme-font-body;
+	}
+
+	@mixin link-no-decorations {
+		/* stylelint-disable declaration-no-important */
+		color: unset !important;
+
+		text-emphasis: unset !important;
+
+		text-decoration: unset !important;
+
+		/* stylelint-enable declaration-no-important */
+	}
+
+	a {
+		@include link-no-decorations();
+		&:hover {
+			@include link-no-decorations();
+		}
+	}
+}

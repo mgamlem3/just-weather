@@ -1,0 +1,14 @@
+name: Percy
+on: [push, pull_request]
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1.0.0
+      - name: Install
+        run: yarn
+      - name: Percy Test
+        uses: percy/storybook-action@v0.1.2
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}

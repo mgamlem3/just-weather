@@ -1,0 +1,38 @@
+/**
+ * @author Michael Gamlem III
+ * @copyright This file is subject to the terms and conditions defined in file 'LICENSE', which is part of the source code for this project.
+ * @format
+ */
+
+@use "./colors" as colors;
+
+$theme-font-head: "Yanone Kaffeesatz", sans-serif;
+$theme-font-body: "Raleway", sans-serif;
+
+$font-size-regular: 14px;
+$font-size-h1: 46px;
+$font-size-h2: 32px;
+$font-size-h3: 24px;
+$font-size-h4: 14px;
+
+$lightest: 200;
+$light: 300;
+$normal: 400;
+$bold: 500;
+$boldest: 700;
+
+$nav-height: 50px;
+
+@mixin background-box {
+	background-color: colors.$primary-dark;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+	border-radius: 4px;
+	padding: 10px 16px 0 16px;
+}
+
+@mixin row {
+	display: flex;
+	position: relative;
+	justify-content: space-around;
+	align-items: center;
+}

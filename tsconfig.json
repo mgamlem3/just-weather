@@ -1,0 +1,40 @@
+{
+	"compilerOptions": {
+		"outDir": "dist",
+		"module": "commonjs",
+		"target": "es5",
+		"lib": ["es6", "dom"],
+		"sourceMap": true,
+		"allowJs": true,
+		"jsx": "preserve",
+		"moduleResolution": "node",
+		"rootDir": "/",
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"strict": false,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true
+	},
+	"exclude": [
+		"node_modules",
+		"build",
+		"scripts",
+		"acceptance-tests",
+		"webpack",
+		"jest",
+		"src/setupTests.ts"
+	],
+	"types": ["typePatches"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"tools/generate-sitemap.js"
+	]
+}

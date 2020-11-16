@@ -1,0 +1,36 @@
+/**
+ * @author Michael Gamlem III
+ * @copyright This file is subject to the terms and conditions defined in file 'LICENSE', which is part of the source code for this project.
+ * @format
+ */
+
+@use "../../styles/colors.scss" as colors;
+@use "../../styles/variables.scss" as variables;
+
+.nav {
+	position: relative;
+	width: 100vw;
+	height: variables.$nav-height;
+	z-index: 1;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.sticky {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
+.nav-controls {
+	display: flex;
+	height: variables.$nav-height;
+	background-color: colors.$primary;
+}
+
+.sticky .sticky-inner {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+}
