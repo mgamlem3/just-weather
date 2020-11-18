@@ -1,7 +1,7 @@
 {
 	"name": "just-weather",
 	"version": "0.0.1",
-	"description": "Just weather, like it says.",
+	"description": "Weather, just like it says...",
 	"main": "index.js",
 	"repository": "https://www.github.com/mgamlem3/just-weather",
 	"author": "Michael Gamlem III, Tyler Gamlem",
@@ -73,6 +73,7 @@
 		"webpack-node-externals": "^2.5.2"
 	},
 	"dependencies": {
+		"@mgamlem3/evergreen": "4.28.2",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
 		"react-router-dom": "^5.2.0"
