@@ -7,11 +7,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1.0.0
       - name: Install
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install
-          auth-token: ${{ secrets.GITHUB_TOKEN }}
-          registry-url: https://npm.pkg.github.com
+        run: yarn
       - name: Percy Test
         uses: percy/storybook-action@v0.1.2
         env:
