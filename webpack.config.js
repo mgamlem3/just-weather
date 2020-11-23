@@ -20,7 +20,18 @@ module.exports = {
 			},
 			{
 				test: /\.(s*)css$/,
-				use: ["style-loader", "css-loader", "sass-loader"],
+				use: [
+					"style-loader",
+					{
+						loader: "css-loader",
+						options: {
+							modules: {
+								localIdentName: "[path][name]__[local]",
+							},
+						},
+					},
+					"sass-loader",
+				],
 			},
 			{
 				test: /\.(jpg|png)$/,
