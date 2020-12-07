@@ -12,7 +12,7 @@ const HomeContent: React.FunctionComponent = () => {
 	return (
 		<div>
 			<main>
-				<div>hello world</div>
+				<div style={{ color: "red" }}>hello world</div>
 			</main>
 		</div>
 	);
