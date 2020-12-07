@@ -6,22 +6,26 @@
 
 import path from "path";
 import express, { Request, Response } from "express";
+import api from "./api";
 
 const PORT = 3000;
 const DIST_DIR = path.join(__dirname);
 
 const app = express();
 
-app.use(express.static(DIST_DIR));
+app.use("/api", api);
+
+app.use("/", express.static(DIST_DIR));
 
 app.get(/.(jpg|png|js|css)$/, (req: Request, res: Response) => {
-	checkContentEncoding(req, res);
+	if (process.env.NODE_ENV === "production") checkContentEncoding(req, res);
 	sendFile(req, res);
 });
 
 app.get("/", (req: Request, res: Response) => {
 	req.url = "/index.html";
-	checkContentEncoding(req, res);
+	console.log(process.env.NODE_ENV);
+	if (process.env.NODE_ENV === "production") checkContentEncoding(req, res);
 	sendFile(req, res);
 });
 
