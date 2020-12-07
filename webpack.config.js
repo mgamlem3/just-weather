@@ -7,6 +7,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
 	mode: "development",
@@ -50,10 +52,25 @@ module.exports = {
 	},
 	devServer: {
 		contentBase: path.join(__dirname, "public/"),
-		port: 3000,
+		port: 3002,
 		publicPath: "/",
 		historyApiFallback: true,
 		hotOnly: true,
+		proxy: {
+			"/api": "http://localhost:3000",
+		},
 	},
-	plugins: [new webpack.HotModuleReplacementPlugin()],
+	plugins: [
+		new webpack.HotModuleReplacementPlugin(),
+		new HtmlWebpackPlugin({
+			title: "Just Weather",
+			minify: true,
+			template: "./public/index.html",
+		}),
+		new MiniCssExtractPlugin({
+			filename: "[hash].css",
+			chunkFilename: "[id].css",
+			ignoreOrder: false,
+		}),
+	],
 };
