@@ -1,0 +1,8 @@
+node_modules
+dist
+.github
+.storybook
+.vscode
+.dockerignore
+Dockerfile
+a
