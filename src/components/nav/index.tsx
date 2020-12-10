@@ -7,7 +7,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import NavButton from "./nav-button";
-import "./styles.scss";
+import styles from "./styles.scss";
 
 const Nav: React.FunctionComponent = () => {
 	const [isSticky, setSticky] = useState(false);
@@ -28,8 +28,11 @@ const Nav: React.FunctionComponent = () => {
 	}, []);
 
 	return (
-		<nav className={`nav ${isSticky ? "sticky" : ""}`} ref={ref}>
-			<div className='nav-controls sticky-inner'>
+		<nav
+			className={`${styles.nav} ${isSticky ? styles.sticky : ""}`}
+			ref={ref}
+		>
+			<div className={`${styles.navControls} ${styles.stickyInner}`}>
 				<NavButton link='/' text='Home' />
 			</div>
 		</nav>

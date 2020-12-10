@@ -11,9 +11,7 @@ import "./styles.scss";
 const HomeContent: React.FunctionComponent = () => {
 	return (
 		<div>
-			<main>
-				<div style={{ color: "red" }}>hello world</div>
-			</main>
+			<div style={{ color: "red" }}>hello world</div>
 		</div>
 	);
 };
