@@ -7,7 +7,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import "./styles.scss";
+import styles from "./styles.scss";
 
 interface NavButtonProps {
 	link: string;
@@ -16,9 +16,9 @@ interface NavButtonProps {
 
 const NavButton: React.FunctionComponent<NavButtonProps> = ({ link, text }) => {
 	return (
-		<div className='nav-button-container'>
+		<div className={styles.navButtonContainer}>
 			<Link to={link} style={{ textDecoration: "inherit" }}>
-				<div className='nav-button'>{text}</div>
+				<div className={styles.navButton}>{text}</div>
 			</Link>
 		</div>
 	);

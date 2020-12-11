@@ -21,13 +21,13 @@
 	z-index: 100;
 }
 
-.nav-controls {
+.navControls {
 	display: flex;
 	height: variables.$nav-height;
 	background-color: colors.$primary;
 }
 
-.sticky .sticky-inner {
+.sticky .stickyInner {
 	position: fixed;
 	top: 0;
 	left: 0;

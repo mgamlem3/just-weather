@@ -7,14 +7,14 @@
 @use "../../../styles/colors" as colors;
 @use "../../../styles/variables" as variables;
 
-.nav-button-container {
+.navButtonContainer {
 	min-width: 40px;
 	height: 100%;
 	background-color: transparent;
 	padding: 0 8px;
 }
 
-.nav-button {
+.navButton {
 	color: colors.$text-light;
 	font-size: variables.$font-size-h3;
 	padding: 0 6px;
