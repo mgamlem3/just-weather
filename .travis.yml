@@ -8,6 +8,6 @@ services:
 cache: yarn
 
 script:
-  - yarn lint
+  - yarn lint-check
   - yarn test
   - docker build .
