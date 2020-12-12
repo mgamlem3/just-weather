@@ -7,3 +7,4 @@ LICENSE
 .travis.yml
 .next
 storybook-static/
+tests/
