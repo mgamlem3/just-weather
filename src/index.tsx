@@ -6,8 +6,17 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+
+import store from "./redux/store";
+
 import App from "./components/app";
 
 if (typeof window !== "undefined") {
-	ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+	ReactDOM.render(
+		<Provider store={store}>
+			<App />
+		</Provider>,
+		document.getElementById("root") as HTMLElement,
+	);
 }

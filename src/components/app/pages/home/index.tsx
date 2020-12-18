@@ -5,6 +5,7 @@
  */
 
 import React from "react";
+import Counter from "../../../counter";
 
 import "./styles.scss";
 
@@ -12,6 +13,7 @@ const HomeContent: React.FunctionComponent = () => {
 	return (
 		<div>
 			<div style={{ color: "red" }}>hello world</div>
+			<Counter />
 		</div>
 	);
 };
