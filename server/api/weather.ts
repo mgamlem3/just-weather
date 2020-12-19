@@ -11,6 +11,7 @@ import {
 	currentWeatherByCityApiRequest,
 	currentWeatherByZipRequest,
 	currentWeatherByLatLongRequest,
+	currentWeatherByOneCall,
 } from "../helpers/weather/weather-request-helpers";
 import { sendWeatherResponse } from "../helpers/weather/weather-response-helpers";
 import { send500 } from "../helpers/error-response-helpers";
@@ -75,8 +76,34 @@ weatherApi.get(
 	},
 );
 
+weatherApi.get(
+	"/onecall",
+	bodyParser.json(),
+	async (req: Request, res: Response) => {
+		try {
+			if (!req.body?.lat || !req.body?.lon)
+				res.status(400).send("Must include lat and lon");
+			else if (
+				!validator.isDecimal(req.body.lat.toString()) ||
+				!validator.isDecimal(req.body.lon.toString())
+			)
+				res.status(400).send("Lat and Lon must be decimals");
+
+			const response = await currentWeatherByOneCall(
+				req.body.lat,
+				req.body.lon,
+			);
+
+			sendWeatherResponse(res, response);
+		} catch (error) {
+			console.error(error);
+			send500(res);
+		}
+	},
+);
+
 weatherApi.get("/", (req: Request, res: Response) => {
-	res.send("hello");
+	res.end();
 });
 
 export default weatherApi;
