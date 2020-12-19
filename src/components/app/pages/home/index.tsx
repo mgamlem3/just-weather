@@ -6,16 +6,17 @@
 
 import React from "react";
 import Counter from "../../../counter";
+import Page from "../page";
 
 import "./styles.scss";
 
-const HomeContent: React.FunctionComponent = () => {
+const Home: React.FunctionComponent = () => {
 	return (
-		<div>
+		<Page>
 			<div style={{ color: "red" }}>hello world</div>
 			<Counter />
-		</div>
+		</Page>
 	);
 };
 
-export default HomeContent;
+export default Home;

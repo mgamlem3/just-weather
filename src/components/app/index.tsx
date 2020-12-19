@@ -4,12 +4,13 @@
  * @format
  */
 
-import React from "react";
+import React, { Suspense } from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import { CircularProgress } from "@material-ui/core";
 import { Routes } from "./routes";
 
-import { Home } from "./pages";
+const Home = React.lazy(() => import("./pages/home"));
 
 import "../../styles/base.scss";
 
@@ -18,13 +19,22 @@ const customHistory = createBrowserHistory();
 const App: React.FunctionComponent = () => {
 	return (
 		<div className='app'>
-			<Router history={customHistory}>
-				<Switch>
-					<Route path={Routes.Home}>
-						<Home />
-					</Route>
-				</Switch>
-			</Router>
+			<Suspense
+				fallback={
+					<div>
+						Loading...
+						<CircularProgress />
+					</div>
+				}
+			>
+				<Router history={customHistory}>
+					<Switch>
+						<Route path={Routes.Home}>
+							<Home />
+						</Route>
+					</Switch>
+				</Router>
+			</Suspense>
 		</div>
 	);
 };
