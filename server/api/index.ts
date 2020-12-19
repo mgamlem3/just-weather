@@ -5,14 +5,16 @@
  */
 
 import express, { Request, Response, Router } from "express";
+import mapApi from "./map";
 import weatherApi from "./weather";
 
 const api: Router = express.Router();
 
+api.use("/map", mapApi);
 api.use("/weather", weatherApi);
 
 api.all("/", (req: Request, res: Response) => {
-	res.sendStatus(501);
+	res.status(501).end();
 });
 
 export default api;

@@ -9,3 +9,10 @@ export interface CurrentWeatherResponse {
 	data?: JSON;
 	message?: string;
 }
+
+export interface GeocodedLocationResponse {
+	status: number;
+	lat?: number;
+	lon?: number;
+	message?: string;
+}
