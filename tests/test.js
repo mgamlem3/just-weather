@@ -15,8 +15,12 @@ describe("GET /api", () => {
 
 describe("GET /api/weather/city/bellingham", () => {
 	it("should return weather", () => {
-		request(app).get("/api/weather/city/bellingham").send().expect(200).then((res) => {
-			assert(res.body);
-		})
-	})
+		request(app)
+			.get("/api/weather/city/bellingham")
+			.send()
+			.expect(200)
+			.then((res) => {
+				assert(res.body);
+			});
+	});
 });
