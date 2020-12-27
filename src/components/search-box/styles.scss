@@ -1,0 +1,25 @@
+/**
+ * @author Michael Gamlem III
+ * @copyright This file is subject to the terms and conditions defined in file 'LICENSE', which is part of the source code for this project.
+ * @format
+ */
+
+.container {
+	display: flex;
+	align-items: center;
+	margin-left: 14px;
+
+	.icon {
+		margin-right: 4px;
+		color: white;
+	}
+
+	.input {
+		height: 50%;
+		width: 40vw;
+		padding: 0 4px;
+		border-radius: 6px;
+		border: none;
+		outline: none;
+	}
+}

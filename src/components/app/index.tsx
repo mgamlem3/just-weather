@@ -7,7 +7,6 @@
 import React, { Suspense } from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
-import { CircularProgress } from "@material-ui/core";
 import { Routes } from "./routes";
 
 const Home = React.lazy(() => import("./pages/home"));
@@ -19,14 +18,7 @@ const customHistory = createBrowserHistory();
 const App: React.FunctionComponent = () => {
 	return (
 		<div className='app'>
-			<Suspense
-				fallback={
-					<div>
-						Loading...
-						<CircularProgress />
-					</div>
-				}
-			>
+			<Suspense fallback={<div>Loading...</div>}>
 				<Router history={customHistory}>
 					<Switch>
 						<Route path={Routes.Home}>

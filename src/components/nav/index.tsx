@@ -5,6 +5,7 @@
  */
 
 import React, { useEffect, useRef, useState } from "react";
+import SearchBox from "../search-box";
 
 import NavButton from "./nav-button";
 import styles from "./styles.scss";
@@ -33,7 +34,8 @@ const Nav: React.FunctionComponent = () => {
 			ref={ref}
 		>
 			<div className={`${styles.navControls} ${styles.stickyInner}`}>
-				<NavButton link='/' text='Home' />
+				<NavButton link='/' text='Just Weather' />
+				<SearchBox />
 			</div>
 		</nav>
 	);
