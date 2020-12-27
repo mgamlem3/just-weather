@@ -2,7 +2,7 @@
 	"files.autoSave": "afterDelay",
 	"editor.insertSpaces": false,
 	"workbench.colorCustomizations": {
-		"titleBar.activeBackground": "#29b6f6",
+		"titleBar.activeBackground": "#1976d2",
 		"titleBar.activeForeground": "#ffffff",
 	},
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
