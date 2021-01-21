@@ -7,7 +7,7 @@
 import React, { ComponentProps } from "react";
 import { Story } from "@storybook/react/types-6-0";
 
-import { Home } from "../index";
+import Home from "./index";
 
 export default {
 	title: "Pages/Home",
