@@ -10,6 +10,7 @@ import { createBrowserHistory } from "history";
 import { Routes } from "./routes";
 
 const Home = React.lazy(() => import("./pages/home"));
+const SignIn = React.lazy(() => import("./pages/sign-in"));
 
 import "../../styles/base.scss";
 
@@ -21,6 +22,7 @@ const App: React.FunctionComponent = () => {
 			<Suspense fallback={<div>Loading...</div>}>
 				<Router history={customHistory}>
 					<Switch>
+						<Route path={Routes.SignIn} component={SignIn} />
 						<Route path={Routes.Home}>
 							<Home />
 						</Route>

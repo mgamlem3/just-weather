@@ -5,6 +5,7 @@
  */
 
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import SearchBox from "../search-box";
 
 import NavButton from "./nav-button";
@@ -36,6 +37,7 @@ const Nav: React.FunctionComponent = () => {
 			<div className={`${styles.navControls} ${styles.stickyInner}`}>
 				<NavButton link='/' text='Just Weather' />
 				<SearchBox />
+				<Link to='/sign-in'>Sign In</Link>
 			</div>
 		</nav>
 	);
