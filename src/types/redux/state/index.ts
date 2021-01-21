@@ -4,11 +4,10 @@
  * @format
  */
 
-export interface AuthState {
-	user: string;
-	error?: string;
-}
+import { AuthState } from "./auth";
+import { CounterState } from "./counter";
 
-export const InitialAuthState = {
-	user: "",
-};
+export interface State {
+	auth: AuthState;
+	counter: CounterState;
+}

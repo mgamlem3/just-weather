@@ -4,11 +4,6 @@
  * @format
  */
 
-export interface AuthState {
-	user: string;
-	error?: string;
-}
+import { State } from "../../types/redux/state";
 
-export const InitialAuthState = {
-	user: "",
-};
+export const selectCurrentUser = (state: State): string => state.auth.user;

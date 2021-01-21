@@ -6,4 +6,12 @@
 
 export interface AuthAction {
 	type: string;
+	user?: string;
+	error?: string | undefined;
+}
+
+export enum SignInActionTypes {
+	Processing = "SIGN_IN_PROCESSING",
+	Success = "SIGN_IN_SUCCESS",
+	Failed = "SIGN_IN_FAILED",
 }

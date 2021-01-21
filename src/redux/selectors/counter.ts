@@ -4,7 +4,6 @@
  * @format
  */
 
-import { createSelector } from "reselect";
-import { CounterState } from "../../types/redux/state/auth";
+import { CounterState } from "../../types/redux/state/counter";
 
 export const getCount = (state: CounterState): number => state.value;
