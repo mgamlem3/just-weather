@@ -4,11 +4,15 @@
  * @format
  */
 
+import firebase from "firebase";
+
 export interface AuthState {
-	user: string;
+	user: firebase.auth.UserCredential | null | undefined;
+	isProcessing: boolean;
 	error?: string;
 }
 
 export const InitialAuthState = {
-	user: "",
+	user: null,
+	isProcessing: false,
 };

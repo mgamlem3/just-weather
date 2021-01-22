@@ -15,18 +15,19 @@ export const authReducer = (
 		case SignInActionTypes.Processing:
 			return {
 				...state,
-				user: "Processing",
+				isProcessing: true,
 			};
 		case SignInActionTypes.Success:
 			return {
 				...state,
-				user: "michael",
-				// user: action?.user ?? "",
+				isProcessing: false,
+				user: action.user,
 			};
 		case SignInActionTypes.Failed:
 			return {
 				...state,
-				user: "none",
+				isProcessing: false,
+				user: null,
 				error: action.error,
 			};
 		default:

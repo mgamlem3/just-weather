@@ -13,8 +13,10 @@ const Home = React.lazy(() => import("./pages/home"));
 const SignIn = React.lazy(() => import("./pages/sign-in"));
 
 import "../../styles/base.scss";
+import { initializeFirebase } from "./firebase";
 
 const customHistory = createBrowserHistory();
+initializeFirebase();
 
 const App: React.FunctionComponent = () => {
 	return (

@@ -5,15 +5,20 @@
  */
 
 import { configureStore } from "@reduxjs/toolkit";
-import thunk from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
 
 import { authReducer } from "./reducers/auth";
 import { counterReducer } from "./reducers/counter";
+import startSagas from "./sagas";
+
+const sagaMiddleware = createSagaMiddleware();
 
 export default configureStore({
 	reducer: {
 		auth: authReducer,
 		counter: counterReducer,
 	},
-	middleware: [thunk],
+	middleware: [sagaMiddleware],
 });
+
+sagaMiddleware.run(startSagas);

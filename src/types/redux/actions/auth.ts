@@ -4,9 +4,13 @@
  * @format
  */
 
+import firebase from "firebase";
+
 export interface AuthAction {
 	type: string;
-	user?: string;
+	user?: firebase.auth.UserCredential;
+	username?: string;
+	password?: string;
 	error?: string | undefined;
 }
 

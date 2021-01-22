@@ -4,6 +4,16 @@
  * @format
  */
 
+import firebase from "firebase";
+
 import { State } from "../../types/redux/state";
 
-export const selectCurrentUser = (state: State): string => state.auth.user;
+export const selectCurrentUser = (
+	state: State,
+): firebase.auth.UserCredential | null | undefined => state.auth.user;
+
+export const selectAuthProcessing = (state: State): boolean =>
+	state.auth.isProcessing;
+
+export const selectAuthError = (state: State): string | undefined =>
+	state.auth?.error;
