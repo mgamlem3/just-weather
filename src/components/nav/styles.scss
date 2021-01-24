@@ -25,6 +25,12 @@
 	display: flex;
 	height: variables.$nav-height;
 	background-color: colors.$primary;
+
+	.content {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+	}
 }
 
 .sticky .stickyInner {

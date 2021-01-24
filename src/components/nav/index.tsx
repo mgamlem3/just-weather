@@ -38,10 +38,12 @@ const Nav: React.FunctionComponent = () => {
 		>
 			<div className={`${styles.navControls} ${styles.stickyInner}`}>
 				<NavButton link='/' text='Just Weather' />
-				<SearchBox />
-				<button onClick={() => setSignInModalState(true)}>
-					Sign In
-				</button>
+				<div className={styles.content}>
+					<SearchBox />
+					<button onClick={() => setSignInModalState(true)}>
+						Sign In
+					</button>
+				</div>
 			</div>
 			<SignInModal
 				isOpen={isSignInModalOpen}
