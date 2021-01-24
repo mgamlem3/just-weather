@@ -31,10 +31,5 @@
 		"src/setupTests.ts"
 	],
 	"types": ["typePatches"],
-	"include": [
-		"next-env.d.ts",
-		"**/*.ts",
-		"**/*.tsx",
-		"tools/generate-sitemap.js"
-	]
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }
