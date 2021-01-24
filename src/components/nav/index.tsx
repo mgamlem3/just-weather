@@ -5,14 +5,16 @@
  */
 
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import SearchBox from "../search-box";
+import SignInModal from "../sign-in-modal";
 
 import NavButton from "./nav-button";
 import styles from "./styles.scss";
 
 const Nav: React.FunctionComponent = () => {
 	const [isSticky, setSticky] = useState(false);
+	const [isSignInModalOpen, setSignInModalState] = useState(false);
+
 	const ref = useRef<HTMLDivElement>(null);
 
 	const handleScroll = () => {
@@ -37,8 +39,14 @@ const Nav: React.FunctionComponent = () => {
 			<div className={`${styles.navControls} ${styles.stickyInner}`}>
 				<NavButton link='/' text='Just Weather' />
 				<SearchBox />
-				<Link to='/sign-in'>Sign In</Link>
+				<button onClick={() => setSignInModalState(true)}>
+					Sign In
+				</button>
 			</div>
+			<SignInModal
+				isOpen={isSignInModalOpen}
+				onClose={() => setSignInModalState(false)}
+			/>
 		</nav>
 	);
 };
