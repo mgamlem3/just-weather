@@ -5,9 +5,7 @@
  */
 
 import { AuthState } from "./auth";
-import { CounterState } from "./counter";
 
 export interface State {
 	auth: AuthState;
-	counter: CounterState;
 }
