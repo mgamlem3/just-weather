@@ -5,7 +5,11 @@
  */
 
 import firebase from "firebase";
-import { AuthAction, SignInActionTypes } from "../../types/redux/actions/auth";
+import {
+	AuthAction,
+	SignInActionTypes,
+	SignInWithGoogleActionTypes,
+} from "../../types/redux/actions/auth";
 
 export const onSignInRequested = (
 	username: string,
@@ -25,4 +29,18 @@ export const onSignInSucceeded = (
 
 export const onSignInErrored = (error: string): AuthAction => {
 	return { type: SignInActionTypes.Failed, error };
+};
+
+export const onSignInWithGoogleRequested = (): AuthAction => {
+	return { type: SignInWithGoogleActionTypes.Processing };
+};
+
+export const onSignInWithGoogleSucceeded = (
+	user: firebase.auth.UserCredential,
+): AuthAction => {
+	return { type: SignInWithGoogleActionTypes.Success, user };
+};
+
+export const onSignInWithGoogleErrored = (error: string): AuthAction => {
+	return { type: SignInWithGoogleActionTypes.Failed, error };
 };

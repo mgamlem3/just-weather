@@ -5,7 +5,11 @@
  */
 
 import { AuthState, InitialAuthState } from "../../types/redux/state/auth";
-import { AuthAction, SignInActionTypes } from "../../types/redux/actions/auth";
+import {
+	AuthAction,
+	SignInActionTypes,
+	SignInWithGoogleActionTypes,
+} from "../../types/redux/actions/auth";
 
 export const authReducer = (
 	state: AuthState = InitialAuthState,
@@ -28,6 +32,23 @@ export const authReducer = (
 				...state,
 				isProcessing: false,
 				user: null,
+				error: action.error,
+			};
+		case SignInWithGoogleActionTypes.Processing:
+			return {
+				...state,
+				isProcessing: true,
+			};
+		case SignInWithGoogleActionTypes.Success:
+			return {
+				...state,
+				isProcessing: false,
+				user: action.user,
+			};
+		case SignInWithGoogleActionTypes.Failed:
+			return {
+				...state,
+				isProcessing: false,
 				error: action.error,
 			};
 		default:

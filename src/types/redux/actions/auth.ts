@@ -19,3 +19,9 @@ export enum SignInActionTypes {
 	Success = "SIGN_IN_SUCCESS",
 	Failed = "SIGN_IN_FAILED",
 }
+
+export enum SignInWithGoogleActionTypes {
+	Processing = "SIGN_IN_WITH_GOOGLE_PROCESSING",
+	Success = "SIGN_IN_WITH_GOOGLE_SUCCESS",
+	Failed = "SIGN_IN_WITH_GOOGLE_FAILED",
+}
