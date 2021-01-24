@@ -5,6 +5,16 @@
  */
 
 @use "../../styles/colors" as colors;
+@use "../../styles/variables" as variables;
+
+.errorAlertContent {
+	@include variables.centerVertical();
+
+	.errorIcon {
+		margin-right: 6px;
+		padding-bottom: 2px;
+	}
+}
 
 .signInContainer {
 	display: flex;
@@ -21,6 +31,12 @@
 		align-self: start;
 		color: colors.$text-grey;
 		margin-bottom: 2px;
+	}
+
+	.spinnerContainer {
+		min-height: 60px;
+		display: flex;
+		align-items: center;
 	}
 
 	.signInButton {

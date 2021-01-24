@@ -8,6 +8,7 @@ import React from "react";
 import { Dispatch } from "@reduxjs/toolkit";
 import { connect } from "react-redux";
 import { Alert, Button, Modal, Spinner } from "react-bootstrap";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 
 import {
 	onSignInRequested,
@@ -68,7 +69,12 @@ class SignInModal extends React.PureComponent<
 				<Modal.Body>
 					{authError && (
 						<Alert variant='danger'>
-							Uh Oh. Something went wrong. Try again.
+							<div className={styles.errorAlertContent}>
+								<ErrorOutlineIcon
+									className={styles.errorIcon}
+								/>
+								Uh Oh. Something went wrong. Try again.
+							</div>
 						</Alert>
 					)}
 					<div className={styles.signInContainer}>
@@ -97,23 +103,26 @@ class SignInModal extends React.PureComponent<
 								}
 							/>
 						</div>
-						<Button
-							className={styles.signInButton}
-							onClick={this.onSignInClicked}
-						>
-							sign in
-						</Button>
-						<Button
-							onClick={this.onSignInWithGoogleClicked}
-							variant='outline-primary'
-							disabled={authIsProcessing}
-						>
-							{authIsProcessing ? (
-								<Spinner animation='border' variant='Primary' />
-							) : (
-								"sign in with Google"
-							)}
-						</Button>
+						{authIsProcessing ? (
+							<div className={styles.spinnerContainer}>
+								<Spinner animation='border' variant='primary' />
+							</div>
+						) : (
+							<React.Fragment>
+								<Button
+									className={styles.signInButton}
+									onClick={this.onSignInClicked}
+								>
+									sign in
+								</Button>
+								<Button
+									onClick={this.onSignInWithGoogleClicked}
+									variant='outline-primary'
+								>
+									sign in with Google
+								</Button>
+							</React.Fragment>
+						)}
 					</div>
 				</Modal.Body>
 			</Modal>

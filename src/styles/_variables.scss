@@ -36,3 +36,13 @@ $nav-height: 60px;
 	justify-content: space-around;
 	align-items: center;
 }
+
+@mixin centerVertical {
+	display: flex;
+	align-items: center;
+}
+
+@mixin centerHorizontal {
+	display: flex;
+	justify-content: center;
+}
