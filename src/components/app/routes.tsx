@@ -8,5 +8,4 @@ import { RoutesDto } from "../../types";
 
 export const Routes: RoutesDto = {
 	Home: "/",
-	SignIn: "/sign-in"
 };
