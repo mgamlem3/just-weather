@@ -6,6 +6,7 @@
 
 import React from "react";
 import Page from "../page";
+import Map, { MapStyles } from "../../../map";
 
 import "./styles.scss";
 
@@ -13,6 +14,7 @@ const Home: React.FunctionComponent = () => {
 	return (
 		<Page>
 			<div style={{ color: "red" }}>hello world</div>
+			<Map mapStyle={MapStyles.Base} />
 		</Page>
 	);
 };
