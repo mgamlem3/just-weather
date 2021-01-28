@@ -5,7 +5,7 @@
  */
 
 import React from "react";
-import SearchIcon from "@material-ui/icons/Search";
+import { BsSearch } from "react-icons/bs";
 
 import styles from "./styles.scss";
 
@@ -13,7 +13,7 @@ class SearchBox extends React.PureComponent {
 	render(): JSX.Element {
 		return (
 			<div className={styles.container}>
-				<SearchIcon className={styles.icon} />
+				<BsSearch className={styles.icon} />
 				<input className={styles.input} placeholder='Bellingham, WA' />
 			</div>
 		);

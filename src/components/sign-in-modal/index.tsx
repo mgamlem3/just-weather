@@ -8,7 +8,7 @@ import React from "react";
 import { Dispatch } from "@reduxjs/toolkit";
 import { connect } from "react-redux";
 import { Alert, Button, Form, Modal, Spinner } from "react-bootstrap";
-import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import { BsExclamationCircle } from "react-icons/bs";
 
 import {
 	onSignInRequested,
@@ -70,7 +70,7 @@ class SignInModal extends React.PureComponent<
 					{authError && (
 						<Alert variant='danger'>
 							<div className={styles.errorAlertContent}>
-								<ErrorOutlineIcon
+								<BsExclamationCircle
 									className={styles.errorIcon}
 								/>
 								Uh Oh. Something went wrong. Try again.
