@@ -108,7 +108,7 @@ class SignInModal extends React.PureComponent<
 								<Spinner animation='border' variant='primary' />
 							</div>
 						) : (
-							<React.Fragment>
+							<div className={styles.signInButtonsContainer}>
 								<Button
 									className={styles.signInButton}
 									onClick={this.onSignInClicked}
@@ -121,7 +121,7 @@ class SignInModal extends React.PureComponent<
 								>
 									sign in with Google
 								</Button>
-							</React.Fragment>
+							</div>
 						)}
 					</div>
 				</Modal.Body>

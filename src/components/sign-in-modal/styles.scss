@@ -39,8 +39,11 @@
 		align-items: center;
 	}
 
-	.signInButton {
-		margin-top: 10px;
-		margin-bottom: 6px;
+	.signInButtonsContainer {
+		margin-top: 14px;
+
+		.signInButton {
+			margin: 6px;
+		}
 	}
 }
