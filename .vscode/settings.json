@@ -1,5 +1,6 @@
 {
 	"files.autoSave": "afterDelay",
+	"files.eol": "\n",
 	"editor.insertSpaces": false,
 	"workbench.colorCustomizations": {
 		"titleBar.activeBackground": "#1976d2",
