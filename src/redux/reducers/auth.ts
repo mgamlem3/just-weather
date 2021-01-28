@@ -25,7 +25,11 @@ export const authReducer = (
 			return {
 				...state,
 				isProcessing: false,
-				user: action.user,
+				user: {
+					id: action.user?.uid,
+					displayName: action.user?.displayName,
+					photoURL: action.user?.photoURL,
+				},
 			};
 		case SignInActionTypes.Failed:
 			return {
@@ -43,7 +47,11 @@ export const authReducer = (
 			return {
 				...state,
 				isProcessing: false,
-				user: action.user,
+				user: {
+					id: action.user?.uid,
+					displayName: action.user?.displayName,
+					photoURL: action.user?.photoURL,
+				},
 			};
 		case SignInWithGoogleActionTypes.Failed:
 			return {

@@ -8,7 +8,7 @@ import firebase from "firebase";
 
 export interface AuthAction {
 	type: string;
-	user?: firebase.auth.UserCredential;
+	user?: firebase.User;
 	username?: string;
 	password?: string;
 	error?: string | undefined;

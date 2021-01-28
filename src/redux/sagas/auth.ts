@@ -28,7 +28,7 @@ function* signInWorker(action: AuthAction) {
 
 		if (result instanceof Error)
 			yield put({ type: SignInActionTypes.Failed, error: result });
-		else yield put({ type: SignInActionTypes.Success, user: result });
+		else yield put({ type: SignInActionTypes.Success, user: result.user });
 	}
 }
 
