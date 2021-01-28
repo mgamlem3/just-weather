@@ -7,7 +7,7 @@
 import React from "react";
 import { Dispatch } from "@reduxjs/toolkit";
 import { connect } from "react-redux";
-import { Alert, Button, Modal, Spinner } from "react-bootstrap";
+import { Alert, Button, Form, Modal, Spinner } from "react-bootstrap";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 
 import {
@@ -78,9 +78,9 @@ class SignInModal extends React.PureComponent<
 						</Alert>
 					)}
 					<div className={styles.signInContainer}>
-						<div className={styles.inputAndLabelContainer}>
-							<label>username:</label>
-							<input
+						<Form.Group>
+							<Form.Label>username:</Form.Label>
+							<Form.Control
 								id='just-weather-username'
 								value={username}
 								onChange={(e) =>
@@ -89,10 +89,10 @@ class SignInModal extends React.PureComponent<
 									})
 								}
 							/>
-						</div>
-						<div className={styles.inputAndLabelContainer}>
-							<label>password:</label>
-							<input
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>password:</Form.Label>
+							<Form.Control
 								type='password'
 								id='password'
 								value={password}
@@ -102,7 +102,7 @@ class SignInModal extends React.PureComponent<
 									})
 								}
 							/>
-						</div>
+						</Form.Group>
 						{authIsProcessing ? (
 							<div className={styles.spinnerContainer}>
 								<Spinner animation='border' variant='primary' />
