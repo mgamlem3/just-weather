@@ -5,6 +5,8 @@
  */
 
 import React, { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import SearchBox from "../search-box";
 import SignInModal from "../sign-in-modal";
 
@@ -14,6 +16,7 @@ import styles from "./styles.scss";
 const Nav: React.FunctionComponent = () => {
 	const [isSticky, setSticky] = useState(false);
 	const [isSignInModalOpen, setSignInModalState] = useState(false);
+	const location: unknown = useLocation();
 
 	const ref = useRef<HTMLDivElement>(null);
 
@@ -39,7 +42,7 @@ const Nav: React.FunctionComponent = () => {
 			<div className={`${styles.navControls} ${styles.stickyInner}`}>
 				<NavButton link='/' text='Just Weather' />
 				<div className={styles.content}>
-					<SearchBox />
+					<SearchBox location={location} />
 					<button onClick={() => setSignInModalState(true)}>
 						Sign In
 					</button>
