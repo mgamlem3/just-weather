@@ -15,6 +15,7 @@ import {
 } from "../helpers/weather/weather-request-helpers";
 import { sendWeatherResponse } from "../helpers/weather/weather-response-helpers";
 import { send500 } from "../helpers/error-response-helpers";
+import Axios from "axios";
 
 const weatherApi: Router = express.Router();
 
@@ -101,6 +102,40 @@ weatherApi.get(
 		}
 	},
 );
+
+weatherApi.get("/search", async (req: Request, res: Response) => {
+	try {
+		if (!req.query.location)
+			res.status(400).send("Must include a location");
+		else {
+			const geocodeResponse = await Axios.get("/api/map/geocode", {
+				data: {
+					location: req.query.location,
+				},
+				proxy: {
+					host: "localhost",
+					port: 3000,
+				},
+			});
+
+			const weatherResponse = await Axios.get("/api/weather/onecall", {
+				data: {
+					lat: geocodeResponse.data.lat,
+					lon: geocodeResponse.data.lon,
+				},
+				proxy: {
+					host: "localhost",
+					port: 3000,
+				},
+			});
+
+			sendWeatherResponse(res, weatherResponse);
+		}
+	} catch (error) {
+		console.error(error);
+		send500(res);
+	}
+});
 
 weatherApi.get("/", (req: Request, res: Response) => {
 	res.end();
