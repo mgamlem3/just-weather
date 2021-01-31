@@ -6,4 +6,5 @@
 
 export interface RoutesDto {
 	Home: string;
+	Weather: string;
 }
