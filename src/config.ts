@@ -4,10 +4,9 @@
  * @format
  */
 
-import { AuthState } from "./auth";
-import { WeatherState } from "./weather";
+const env = process.env.NODE_ENV || "development";
 
-export interface State {
-	auth: AuthState;
-	weather: WeatherState;
-}
+export const baseURL =
+	env === "production"
+		? "https://justweather.mgamlem3.com"
+		: "http://localhost:3002";

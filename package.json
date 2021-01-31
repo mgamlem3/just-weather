@@ -12,7 +12,7 @@
 		"prebuild": "yarn lint-check",
 		"build": "rm -rf dist && webpack --mode production --config webpack.prod.config.js && webpack --mode production --config webpack.server.config.js",
 		"test": "mocha ./tests/test.js --exit",
-		"start": "node ./dist/server.*.wp.js",
+		"start": "NODE_ENV=production node ./dist/server.*.wp.js",
 		"prettier": "prettier --config ./.prettierrc --ignore-path  ./.prettierignore --write \"**/*.ts*\" \"**/*.js\" \"**/*.scss\" \"*.json\" \"*.md\"",
 		"prettier-check": "prettier --list-different \"{*.js, *.md,./{src}/**/*.ts?(x)}\"",
 		"lint-check": "yarn prettier-check && yarn eslint && yarn stylelint-check",

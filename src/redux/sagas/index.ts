@@ -4,9 +4,11 @@
  * @format
  */
 
-import startAuthSaga from "./auth";
 import { all } from "redux-saga/effects";
 
+import startAuthSaga from "./auth";
+import startWeatherSaga from "./weather";
+
 export default function* startSagas(): unknown {
-	yield all([startAuthSaga()]);
+	yield all([startAuthSaga(), startWeatherSaga()]);
 }
