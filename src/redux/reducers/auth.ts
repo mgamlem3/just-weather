@@ -9,6 +9,7 @@ import {
 	AuthAction,
 	SignInActionTypes,
 	SignInWithGoogleActionTypes,
+	SignOutActionTypes,
 } from "../../types/redux/actions/auth";
 
 export const authReducer = (
@@ -25,11 +26,7 @@ export const authReducer = (
 			return {
 				...state,
 				isProcessing: false,
-				user: {
-					id: action.user?.uid,
-					displayName: action.user?.displayName,
-					photoURL: action.user?.photoURL,
-				},
+				user: action.user,
 			};
 		case SignInActionTypes.Failed:
 			return {
@@ -47,17 +44,30 @@ export const authReducer = (
 			return {
 				...state,
 				isProcessing: false,
-				user: {
-					id: action.user?.uid,
-					displayName: action.user?.displayName,
-					photoURL: action.user?.photoURL,
-				},
+				user: action.user,
 			};
 		case SignInWithGoogleActionTypes.Failed:
 			return {
 				...state,
 				isProcessing: false,
 				error: action.error,
+			};
+		case SignOutActionTypes.Processing:
+			return {
+				...state,
+				isProcessing: true,
+			};
+		case SignOutActionTypes.Success:
+			return {
+				...state,
+				user: null,
+				isProcessing: false,
+			};
+		case SignOutActionTypes.Failed:
+			return {
+				...state,
+				user: null,
+				isProcessing: false,
 			};
 		default:
 			return state;

@@ -8,7 +8,7 @@ import firebase from "firebase";
 
 export interface AuthAction {
 	type: string;
-	user?: firebase.User;
+	user?: firebase.auth.UserCredential;
 	username?: string;
 	password?: string;
 	error?: string | undefined;
@@ -24,4 +24,10 @@ export enum SignInWithGoogleActionTypes {
 	Processing = "SIGN_IN_WITH_GOOGLE_PROCESSING",
 	Success = "SIGN_IN_WITH_GOOGLE_SUCCESS",
 	Failed = "SIGN_IN_WITH_GOOGLE_FAILED",
+}
+
+export enum SignOutActionTypes {
+	Processing = "SIGN_OUT_PROCESSING",
+	Success = "SIGN_OUT_SUCCESS",
+	Failed = "SIGN_OUT_FAILED",
 }

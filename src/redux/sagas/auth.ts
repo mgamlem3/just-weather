@@ -11,6 +11,7 @@ import {
 	AuthAction,
 	SignInActionTypes,
 	SignInWithGoogleActionTypes,
+	SignOutActionTypes,
 } from "../../types/redux/actions/auth";
 
 function* signInWatcher() {
@@ -49,6 +50,26 @@ function* signInWithGoogleWorker() {
 	}
 }
 
+function* signOutWatcher() {
+	yield takeLatest(SignOutActionTypes.Processing, signOutWorker);
+}
+
+function* signOutWorker() {
+	let success = false;
+	firebase
+		.auth()
+		.signOut()
+		.then(() => {
+			success = true;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+
+	if (success) yield put({ type: SignOutActionTypes.Success });
+	else yield put({ type: SignOutActionTypes.Failed });
+}
+
 const signInUser = async (
 	username: string,
 	password: string,
@@ -85,5 +106,5 @@ const signInWithGoogle = async (): Promise<
 };
 
 export default function* startAuthSaga(): unknown {
-	yield all([signInWatcher(), signInWithGoogleWatcher()]);
+	yield all([signInWatcher(), signInWithGoogleWatcher(), signOutWatcher()]);
 }

@@ -4,8 +4,10 @@
  * @format
  */
 
+import firebase from "firebase";
+
 export interface AuthState {
-	user: User | null | undefined;
+	user?: firebase.auth.UserCredential | null;
 	isProcessing: boolean;
 	error?: string;
 }
@@ -14,9 +16,3 @@ export const InitialAuthState = {
 	user: undefined,
 	isProcessing: false,
 };
-
-export interface User {
-	id: string | null | undefined;
-	displayName: string | null | undefined;
-	photoURL?: string | null | undefined;
-}
