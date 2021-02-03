@@ -5,12 +5,14 @@
  */
 
 export interface WeatherState {
-	forecast: WeatherForecast | null | undefined;
+	location?: string | null;
+	forecast?: WeatherForecast | null;
 	isProcessing: boolean;
 	error?: string;
 }
 
 export const InitialWeatherState = {
+	location: undefined,
 	forecast: undefined,
 	isProcessing: false,
 };

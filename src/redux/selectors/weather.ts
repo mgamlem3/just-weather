@@ -4,7 +4,7 @@
  * @format
  */
 
-.location {
-	text-transform: capitalize;
-	
-}
+import { State } from "../../types/redux/state";
+
+export const selectLocation = (state: State): string =>
+	state.weather.location || "";

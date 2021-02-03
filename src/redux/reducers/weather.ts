@@ -22,6 +22,7 @@ export const weatherReducer = (
 			return {
 				...state,
 				isProcessing: true,
+				location: action.search,
 			};
 		case SearchActionTypes.Success:
 			return {
@@ -33,6 +34,7 @@ export const weatherReducer = (
 			return {
 				...state,
 				isProcessing: false,
+				location: null,
 				forecast: null,
 				error: action.error,
 			};

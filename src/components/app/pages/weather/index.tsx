@@ -5,14 +5,19 @@
  */
 
 import React from "react";
+import { useSelector } from "react-redux";
+
+import { selectLocation } from "../../../../redux/selectors/weather";
 import Page from "../page";
 
-import "./styles.scss";
+import styles from "./styles.scss";
 
 const Weather: React.FunctionComponent = () => {
+	const location = useSelector(selectLocation);
+
 	return (
 		<Page>
-			<div style={{ color: "red" }}>weather</div>
+			<h1 className={styles.location}>{location}</h1>
 		</Page>
 	);
 };
