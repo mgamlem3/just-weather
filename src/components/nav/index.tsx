@@ -6,6 +6,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { BsPerson } from "react-icons/bs";
 
 import SearchBox from "../search-box";
 import SignInModal from "../sign-in-modal";
@@ -43,8 +44,11 @@ const Nav: React.FunctionComponent = () => {
 				<NavButton link='/' text='Just Weather' />
 				<div className={styles.content}>
 					<SearchBox location={location} />
-					<button onClick={() => setSignInModalState(true)}>
-						Sign In
+					<button
+						className={styles.accountButton}
+						onClick={() => setSignInModalState(true)}
+					>
+						<BsPerson size={32} color={"white"} />
 					</button>
 				</div>
 			</div>
