@@ -7,6 +7,7 @@
 import firebase from "firebase";
 import {
 	AuthAction,
+	CreateUserActionTypes,
 	SignInActionTypes,
 	SignInWithGoogleActionTypes,
 	SignOutActionTypes,
@@ -58,4 +59,24 @@ export const onSignOutSucceeded = (): AuthAction => {
 
 export const onSignOutErrored = (error: string): AuthAction => {
 	return { type: SignOutActionTypes.Failed, error };
+};
+
+export const onCreateUserRequested = (
+	username: string,
+	password: string,
+): AuthAction => {
+	return { type: CreateUserActionTypes.Processing, username, password };
+};
+
+export const onCreateUserSucceeded = (
+	user: firebase.auth.UserCredential,
+): AuthAction => {
+	return {
+		type: CreateUserActionTypes.Success,
+		user,
+	};
+};
+
+export const onCreateUserErrored = (error: string): AuthAction => {
+	return { type: CreateUserActionTypes.Failed, error };
 };

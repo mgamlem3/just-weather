@@ -14,6 +14,12 @@ export interface AuthAction {
 	error?: string | undefined;
 }
 
+export enum CreateUserActionTypes {
+	Processing = "CREATE_USER_PROCESSING",
+	Success = "CREATE_USER_SUCCESS",
+	Failed = "CREATE_USER_FAILED",
+}
+
 export enum SignInActionTypes {
 	Processing = "SIGN_IN_PROCESSING",
 	Success = "SIGN_IN_SUCCESS",

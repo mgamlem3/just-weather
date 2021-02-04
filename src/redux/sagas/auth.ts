@@ -5,10 +5,11 @@
  */
 
 import firebase from "firebase";
-import { put, all, takeLatest } from "redux-saga/effects";
+import { put, all, takeLatest, takeLeading } from "redux-saga/effects";
 
 import {
 	AuthAction,
+	CreateUserActionTypes,
 	SignInActionTypes,
 	SignInWithGoogleActionTypes,
 	SignOutActionTypes,
@@ -70,6 +71,25 @@ function* signOutWorker() {
 	else yield put({ type: SignOutActionTypes.Failed });
 }
 
+function* createUserWatcher() {
+	yield takeLeading(CreateUserActionTypes.Processing, createUserWorker);
+}
+
+function* createUserWorker(action: AuthAction) {
+	if (!action.username || !action.password)
+		yield put({
+			type: CreateUserActionTypes.Failed,
+			error: "Must provide username and password",
+		});
+	else {
+		const result = yield createUser(action.username, action.password);
+
+		if (result instanceof Error)
+			yield put({ type: SignInActionTypes.Failed, error: result });
+		else yield put({ type: SignInActionTypes.Success, user: result.user });
+	}
+}
+
 const signInUser = async (
 	username: string,
 	password: string,
@@ -105,6 +125,28 @@ const signInWithGoogle = async (): Promise<
 	return result;
 };
 
+const createUser = async (
+	username: string,
+	password: string,
+): Promise<firebase.auth.UserCredential | Error> => {
+	const result = await firebase
+		.auth()
+		.createUserWithEmailAndPassword(username, password)
+		.then((user) => {
+			return user;
+		})
+		.catch((error) => {
+			return new Error(error.message);
+		});
+
+	return result;
+};
+
 export default function* startAuthSaga(): unknown {
-	yield all([signInWatcher(), signInWithGoogleWatcher(), signOutWatcher()]);
+	yield all([
+		signInWatcher(),
+		signInWithGoogleWatcher(),
+		signOutWatcher(),
+		createUserWatcher(),
+	]);
 }
