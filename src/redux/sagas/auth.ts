@@ -86,8 +86,12 @@ function* createUserWorker(action: AuthAction) {
 		const result = yield createUser(action.username, action.password);
 
 		if (result instanceof Error)
-			yield put({ type: SignInActionTypes.Failed, error: result });
-		else yield put({ type: SignInActionTypes.Success, user: result.user });
+			yield put({ type: CreateUserActionTypes.Failed, error: result });
+		else
+			yield put({
+				type: CreateUserActionTypes.Success,
+				user: result.user,
+			});
 	}
 }
 
