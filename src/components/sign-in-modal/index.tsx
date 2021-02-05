@@ -5,7 +5,6 @@
  */
 
 import React from "react";
-import { Dispatch } from "@reduxjs/toolkit";
 import { connect } from "react-redux";
 import { Alert, Modal } from "react-bootstrap";
 import { BsExclamationCircle } from "react-icons/bs";

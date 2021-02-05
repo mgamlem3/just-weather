@@ -44,6 +44,7 @@
         "react/no-is-mounted": "error",
         "react/no-redundant-should-component-update": "error",
         "react/no-unsafe": "error",
+        "no-unused-vars": "error"
 
     },
     "settings": {
