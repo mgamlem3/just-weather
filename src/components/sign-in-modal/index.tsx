@@ -95,9 +95,9 @@ class SignInModal extends React.PureComponent<
 				<Modal.Body>
 					{authError && (
 						<Alert variant='danger'>
-							<div className={styles.errorAlertContent}>
+							<div className={styles.alertContent}>
 								<BsExclamationCircle
-									className={styles.errorIcon}
+									className={styles.alertIcon}
 								/>
 								Uh Oh. Something went wrong. Try again.
 							</div>
