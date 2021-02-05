@@ -7,32 +7,30 @@
 import React from "react";
 import { Dispatch } from "@reduxjs/toolkit";
 import { connect } from "react-redux";
-import { Alert, Button, Form, Modal, Spinner } from "react-bootstrap";
+import { Alert, Modal } from "react-bootstrap";
 import { BsExclamationCircle } from "react-icons/bs";
 
-import {
-	onSignInRequested,
-	onSignInWithGoogleRequested,
-} from "../../redux/actions/auth";
-import {
-	selectAuthError,
-	selectAuthProcessing,
-} from "../../redux/selectors/auth";
+import SignInBody from "./sign-in-body";
+import SignUpBody from "./sign-up-body";
+import ForgotPasswordBody from "./forgot-password-body";
+import { selectAuthError } from "../../redux/selectors/auth";
 
 import styles from "./styles.scss";
 
 interface SignInModalProps {
 	authError: string | undefined;
-	authIsProcessing: boolean;
 	isOpen: boolean;
 	onClose: () => void;
-	signInUser: (username: string, password: string) => void;
-	signInWithGoogle: () => void;
 }
 
 interface SignInModalState {
-	username: string;
-	password: string;
+	modalContent: ModalContentState;
+}
+
+export enum ModalContentState {
+	SignIn = 0,
+	SignUp = 1,
+	ForgotPassword = 2,
 }
 
 class SignInModal extends React.PureComponent<
@@ -40,31 +38,60 @@ class SignInModal extends React.PureComponent<
 	SignInModalState
 > {
 	state = {
-		username: "",
-		password: "",
+		modalContent: ModalContentState.SignIn,
 	};
 
-	onSignInClicked = () => {
-		const { signInUser } = this.props;
-		const { username, password } = this.state;
-		signInUser(username, password);
-		this.setState({ username: "", password: "" });
+	onModalContentStateChange = (state: ModalContentState): void => {
+		this.setState({ modalContent: state });
 	};
 
-	onSignInWithGoogleClicked = () => {
-		const { signInWithGoogle } = this.props;
-		signInWithGoogle();
-		this.setState({ username: "", password: "" });
+	getModalTitle = (): string => {
+		const { modalContent } = this.state;
+
+		switch (modalContent) {
+			case ModalContentState.ForgotPassword:
+				return "Forgot password";
+			case ModalContentState.SignUp:
+				return "Sign up";
+			case ModalContentState.SignIn:
+			default:
+				return "Sign in";
+		}
+	};
+
+	renderModalContent = (): JSX.Element => {
+		const { modalContent } = this.state;
+
+		switch (modalContent) {
+			case ModalContentState.ForgotPassword:
+				return (
+					<ForgotPasswordBody
+						onChangeModalContent={this.onModalContentStateChange}
+					/>
+				);
+			case ModalContentState.SignUp:
+				return (
+					<SignUpBody
+						onChangeModalContent={this.onModalContentStateChange}
+					/>
+				);
+			case ModalContentState.SignIn:
+			default:
+				return (
+					<SignInBody
+						onChangeModalContent={this.onModalContentStateChange}
+					/>
+				);
+		}
 	};
 
 	render() {
-		const { isOpen, onClose, authError, authIsProcessing } = this.props;
-		const { username, password } = this.state;
+		const { isOpen, onClose, authError } = this.props;
 
 		return (
 			<Modal show={isOpen} onHide={onClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Sign In</Modal.Title>
+					<Modal.Title>{this.getModalTitle()}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					{authError && (
@@ -77,53 +104,7 @@ class SignInModal extends React.PureComponent<
 							</div>
 						</Alert>
 					)}
-					<div className={styles.signInContainer}>
-						<Form.Group>
-							<Form.Label>username:</Form.Label>
-							<Form.Control
-								id='just-weather-username'
-								value={username}
-								onChange={(e) =>
-									this.setState({
-										username: e.target.value,
-									})
-								}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>password:</Form.Label>
-							<Form.Control
-								type='password'
-								id='password'
-								value={password}
-								onChange={(e) =>
-									this.setState({
-										password: e.target.value,
-									})
-								}
-							/>
-						</Form.Group>
-						{authIsProcessing ? (
-							<div className={styles.spinnerContainer}>
-								<Spinner animation='border' variant='primary' />
-							</div>
-						) : (
-							<div className={styles.signInButtonsContainer}>
-								<Button
-									className={styles.signInButton}
-									onClick={this.onSignInClicked}
-								>
-									sign in
-								</Button>
-								<Button
-									onClick={this.onSignInWithGoogleClicked}
-									variant='outline-primary'
-								>
-									sign in with Google
-								</Button>
-							</div>
-						)}
-					</div>
+					{this.renderModalContent()}
 				</Modal.Body>
 			</Modal>
 		);
@@ -132,20 +113,10 @@ class SignInModal extends React.PureComponent<
 
 function mapStateToProps(state: never) {
 	const authError = selectAuthError(state);
-	const authIsProcessing = selectAuthProcessing(state);
 
 	return {
 		authError,
-		authIsProcessing,
 	};
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-	return {
-		signInUser: (username, password) =>
-			dispatch(onSignInRequested(username, password)),
-		signInWithGoogle: () => dispatch(onSignInWithGoogleRequested()),
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignInModal);
+export default connect(mapStateToProps, null)(SignInModal);
