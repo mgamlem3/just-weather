@@ -8,6 +8,7 @@ import { AuthState, InitialAuthState } from "../../types/redux/state/auth";
 import {
 	AuthAction,
 	CreateUserActionTypes,
+	SendForgotPasswordActionTypes,
 	SignInActionTypes,
 	SignInWithGoogleActionTypes,
 	SignOutActionTypes,
@@ -22,6 +23,7 @@ export const authReducer = (
 			return {
 				...state,
 				isProcessing: true,
+				error: undefined,
 			};
 		case SignInActionTypes.Success:
 			return {
@@ -40,6 +42,7 @@ export const authReducer = (
 			return {
 				...state,
 				isProcessing: true,
+				error: undefined,
 			};
 		case SignInWithGoogleActionTypes.Success:
 			return {
@@ -57,6 +60,7 @@ export const authReducer = (
 			return {
 				...state,
 				isProcessing: true,
+				error: undefined,
 			};
 		case SignOutActionTypes.Success:
 			return {
@@ -74,6 +78,7 @@ export const authReducer = (
 			return {
 				...state,
 				isProcessing: true,
+				error: undefined,
 			};
 		case CreateUserActionTypes.Success:
 			return {
@@ -82,6 +87,23 @@ export const authReducer = (
 				user: action.user,
 			};
 		case CreateUserActionTypes.Failed:
+			return {
+				...state,
+				isProcessing: false,
+				error: action.error,
+			};
+		case SendForgotPasswordActionTypes.Processing:
+			return {
+				...state,
+				isProcessing: true,
+				error: undefined,
+			};
+		case SendForgotPasswordActionTypes.Success:
+			return {
+				...state,
+				isProcessing: false,
+			};
+		case SendForgotPasswordActionTypes.Failed:
 			return {
 				...state,
 				isProcessing: false,

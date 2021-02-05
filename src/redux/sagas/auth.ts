@@ -10,6 +10,7 @@ import { put, all, takeLatest, takeLeading } from "redux-saga/effects";
 import {
 	AuthAction,
 	CreateUserActionTypes,
+	SendForgotPasswordActionTypes,
 	SignInActionTypes,
 	SignInWithGoogleActionTypes,
 	SignOutActionTypes,
@@ -90,6 +91,31 @@ function* createUserWorker(action: AuthAction) {
 	}
 }
 
+function* sendForgotPasswordWatcher() {
+	yield takeLeading(
+		SendForgotPasswordActionTypes.Processing,
+		sendForgotPasswordWorker,
+	);
+}
+
+function* sendForgotPasswordWorker(action: AuthAction) {
+	if (!action.username) {
+		yield put({
+			type: SendForgotPasswordActionTypes.Failed,
+			error: "Must provide username",
+		});
+	} else {
+		const result = sendForgotPasswordEmail(action.username);
+
+		if (result instanceof Error)
+			yield put({
+				type: SendForgotPasswordActionTypes.Failed,
+				error: result,
+			});
+		else yield put({ type: SendForgotPasswordActionTypes.Success });
+	}
+}
+
 const signInUser = async (
 	username: string,
 	password: string,
@@ -142,11 +168,28 @@ const createUser = async (
 	return result;
 };
 
+const sendForgotPasswordEmail = async (
+	username: string,
+): Promise<boolean | Error> => {
+	const result = await firebase
+		.auth()
+		.sendPasswordResetEmail(username)
+		.then(() => {
+			return true;
+		})
+		.catch((error) => {
+			return new Error(error);
+		});
+
+	return result;
+};
+
 export default function* startAuthSaga(): unknown {
 	yield all([
 		signInWatcher(),
 		signInWithGoogleWatcher(),
 		signOutWatcher(),
 		createUserWatcher(),
+		sendForgotPasswordWatcher(),
 	]);
 }

@@ -20,6 +20,12 @@ export enum CreateUserActionTypes {
 	Failed = "CREATE_USER_FAILED",
 }
 
+export enum SendForgotPasswordActionTypes {
+	Processing = "SEND_FORGOT_PASSWORD_PROCESSING",
+	Success = "SEND_FORGOT_PASSWORD_SUCCESS",
+	Failed = "SEND_FORGOT_PASSWORD_FAILED",
+}
+
 export enum SignInActionTypes {
 	Processing = "SIGN_IN_PROCESSING",
 	Success = "SIGN_IN_SUCCESS",

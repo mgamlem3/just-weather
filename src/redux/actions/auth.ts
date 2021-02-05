@@ -8,6 +8,7 @@ import firebase from "firebase";
 import {
 	AuthAction,
 	CreateUserActionTypes,
+	SendForgotPasswordActionTypes,
 	SignInActionTypes,
 	SignInWithGoogleActionTypes,
 	SignOutActionTypes,
@@ -79,4 +80,16 @@ export const onCreateUserSucceeded = (
 
 export const onCreateUserErrored = (error: string): AuthAction => {
 	return { type: CreateUserActionTypes.Failed, error };
+};
+
+export const onSendForgotPasswordRequested = (username: string): AuthAction => {
+	return { type: SendForgotPasswordActionTypes.Processing, username };
+};
+
+export const onSendForgotPasswordSucceeded = (): AuthAction => {
+	return { type: SendForgotPasswordActionTypes.Success };
+};
+
+export const onSendForgotPasswordErrored = (error: string): AuthAction => {
+	return { type: SendForgotPasswordActionTypes.Failed, error };
 };
