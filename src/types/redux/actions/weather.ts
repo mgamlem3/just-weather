@@ -7,6 +7,7 @@
 export interface WeatherAction {
 	type: string;
 	search?: string;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	result?: any;
 	error?: string | undefined;
 }
