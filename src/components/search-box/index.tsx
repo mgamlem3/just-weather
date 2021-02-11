@@ -49,11 +49,14 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
 	};
 
 	onKeyDown = (e): void => {
-		const { history } = this.props;
+		const { history, search } = this.props;
 		const { inputValue } = this.state;
 
 		if (e.key !== "Enter") return;
-		else history.push(`/weather/${encodeURI(inputValue)}`);
+		else {
+			history.push(`/weather/${encodeURIComponent(inputValue)}`);
+			search(inputValue);
+		}
 	};
 
 	render(): JSX.Element {
