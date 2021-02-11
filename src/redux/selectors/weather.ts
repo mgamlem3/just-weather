@@ -6,5 +6,14 @@
 
 import { State } from "../../types/redux/state";
 
+export const selectCoordinates = (
+	state: State,
+): { lat?: number; lon?: number } => {
+	return {
+		lat: state.weather?.forecast?.lat,
+		lon: state.weather?.forecast?.lon,
+	};
+};
+
 export const selectLocation = (state: State): string =>
 	state.weather.location || "";

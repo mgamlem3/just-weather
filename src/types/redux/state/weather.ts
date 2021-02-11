@@ -18,6 +18,8 @@ export const InitialWeatherState = {
 };
 
 export interface WeatherForecast {
+	lat: number;
+	lon: number;
 	cloudPercent: number;
 	dewPoint: number;
 	feelsLike: number;

@@ -5,21 +5,58 @@
  */
 
 import React from "react";
-import { useSelector } from "react-redux";
+import { Spinner } from "react-bootstrap";
 
-import { selectLocation } from "../../../../redux/selectors/weather";
+import { Map, MapStyles } from "../../../map";
 import Page from "../page";
+import {
+	selectCoordinates,
+	selectLocation,
+} from "../../../../redux/selectors/weather";
+import { State } from "../../../../types/redux/state";
 
 import styles from "./styles.scss";
+import { connect } from "react-redux";
 
-const Weather: React.FunctionComponent = () => {
-	const location = useSelector(selectLocation);
+interface WeatherProps {
+	location: string;
+	coordinates: { lat?: number; lon?: number };
+}
 
-	return (
-		<Page>
-			<h1 className={styles.location}>{location}</h1>
-		</Page>
-	);
+class Weather extends React.PureComponent<WeatherProps> {
+	render(): JSX.Element {
+		const { coordinates, location } = this.props;
+
+		return (
+			<Page>
+				<div className={styles.weatherPage}>
+					<h1 className={styles.location}>{location}</h1>
+					{!coordinates.lat || !coordinates.lon ? (
+						<Spinner animation='border' variant='primary' />
+					) : (
+						<div className={styles.map}>
+							<Map
+								mapStyle={MapStyles.Base}
+								lat={coordinates.lat}
+								lon={coordinates.lon}
+								zoom={12}
+							/>
+						</div>
+					)}
+				</div>
+			</Page>
+		);
+	}
+}
+
+const mapStateToProps = (state: State) => {
+	const location = selectLocation(state);
+	const coordinates = selectCoordinates(state);
+
+	return {
+		location,
+		coordinates,
+	};
 };
 
-export default Weather;
+export default connect(mapStateToProps, null)(Weather);
