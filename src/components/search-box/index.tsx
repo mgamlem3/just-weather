@@ -30,9 +30,11 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
 	state = {
 		inputValue:
 			// eslint-disable-next-line react/destructuring-assignment
-			this.props.location.pathname
-				.replace(/\/(weather\/)?/, "")
-				.replace(/[+%\d]+/, " ") || "",
+			decodeURIComponent(this.props.location.pathname).replace(
+				/\/(weather\/)?/,
+				"",
+			),
+		// .replace(/[+%\d]+/, " ") || "",
 	};
 
 	componentDidMount() {
