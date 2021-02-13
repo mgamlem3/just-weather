@@ -6,7 +6,7 @@
 
 export interface WeatherState {
 	location?: string | null;
-	forecast?: WeatherForecast | null;
+	forecast?: WeatherDto | null;
 	isProcessing: boolean;
 	error?: string;
 }
@@ -39,6 +39,7 @@ export interface WeatherForecast {
 export interface WeatherDescription {
 	description: string;
 	mainIcon: string;
+	id: number;
 }
 
 export interface WeatherDto {
