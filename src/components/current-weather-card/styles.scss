@@ -1,0 +1,36 @@
+/**
+ * @author Michael Gamlem III
+ * @copyright This file is subject to the terms and conditions defined in file 'LICENSE', which is part of the source code for this project.
+ * @format
+ */
+
+@use "../../styles/colors.scss" as colors;
+
+.currentWeatherCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 200px;
+	background-color: colors.$primary;
+	margin-left: 36px;
+	color: #ffffff;
+	border-radius: 6px;
+
+	.heading {
+		margin-bottom: 0;
+	}
+
+	.description {
+		margin: 6px 0;
+	}
+
+	.temperature {
+		font-size: 32px;
+		margin: 6px 0;
+	}
+
+	.unitsContainer {
+		display: flex;
+		align-items: center;
+	}
+}

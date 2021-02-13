@@ -17,6 +17,7 @@ import { State } from "../../../../types/redux/state";
 
 import styles from "./styles.scss";
 import { connect } from "react-redux";
+import CurrentWeatherCard from "../../../current-weather-card";
 
 interface WeatherProps {
 	location: string;
@@ -34,13 +35,16 @@ class Weather extends React.PureComponent<WeatherProps> {
 					{!coordinates.lat || !coordinates.lon ? (
 						<Spinner animation='border' variant='primary' />
 					) : (
-						<div className={styles.map}>
-							<Map
-								mapStyle={MapStyles.Base}
-								lat={coordinates.lat}
-								lon={coordinates.lon}
-								zoom={12}
-							/>
+						<div className={styles.topSection}>
+							<div className={styles.map}>
+								<Map
+									mapStyle={MapStyles.Base}
+									lat={coordinates.lat}
+									lon={coordinates.lon}
+									zoom={12}
+								/>
+							</div>
+							<CurrentWeatherCard />
 						</div>
 					)}
 				</div>

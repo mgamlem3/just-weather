@@ -13,9 +13,13 @@
 	.location {
 		text-transform: capitalize;
 	}
-	
-	.map {
-		width: 50vw;
-		height: 50vw;
+
+	.topSection {
+		display: flex;
+
+		.map {
+			width: 50vw;
+			height: 50vw;
+		}
 	}
 }
