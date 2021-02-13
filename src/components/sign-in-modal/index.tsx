@@ -13,13 +13,19 @@ import SignInBody from "./sign-in-body";
 import SignUpBody from "./sign-up-body";
 import ForgotPasswordBody from "./forgot-password-body";
 import { selectAuthError } from "../../redux/selectors/auth";
+import { State } from "../../types/redux/state";
 
 import styles from "./styles.scss";
 
-interface SignInModalProps {
-	authError: string | undefined;
+type SignInModalProps = Props & MappedProps;
+
+interface Props {
 	isOpen: boolean;
 	onClose: () => void;
+}
+
+interface MappedProps {
+	authError?: string;
 }
 
 interface SignInModalState {
@@ -110,11 +116,11 @@ class SignInModal extends React.PureComponent<
 	}
 }
 
-function mapStateToProps(state: never) {
-	const authError = selectAuthError(state);
+function mapStateToProps(state: State): MappedProps {
+	const error = selectAuthError(state);
 
 	return {
-		authError,
+		authError: error,
 	};
 }
 
