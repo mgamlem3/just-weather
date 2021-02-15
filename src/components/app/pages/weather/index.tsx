@@ -32,21 +32,21 @@ class Weather extends React.PureComponent<WeatherProps> {
 			<Page>
 				<div className={styles.weatherPage}>
 					<h1 className={styles.location}>{location}</h1>
-					{!coordinates.lat || !coordinates.lon ? (
-						<Spinner animation='border' variant='primary' />
-					) : (
-						<div className={styles.topSection}>
-							<div className={styles.map}>
+					<div className={styles.topSection}>
+						<div className={styles.map}>
+							{!coordinates.lat || !coordinates.lon ? (
+								<Spinner animation='border' variant='primary' />
+							) : (
 								<Map
 									mapStyle={MapStyles.Base}
 									lat={coordinates.lat}
 									lon={coordinates.lon}
 									zoom={12}
 								/>
-							</div>
-							<CurrentWeatherCard />
+							)}
 						</div>
-					)}
+						<CurrentWeatherCard />
+					</div>
 				</div>
 			</Page>
 		);

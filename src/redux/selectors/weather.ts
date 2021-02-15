@@ -22,3 +22,6 @@ export const selectCurrentWeather = (
 
 export const selectLocation = (state: State): string =>
 	state.weather.location || "";
+
+export const selectWeatherIsProcessing = (state: State): boolean =>
+	state.weather.isProcessing;

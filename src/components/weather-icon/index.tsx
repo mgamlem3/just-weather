@@ -123,7 +123,7 @@ const getIconForCode = (code: number, iconCode: string): JSX.Element => {
 		case 804:
 			return <WiCloudy size={ICON_SIZE} />;
 		default:
-			return <div>:(</div>;
+			return <div />;
 	}
 };
 
