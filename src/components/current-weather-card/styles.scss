@@ -5,6 +5,7 @@
  */
 
 @use "../../styles/colors.scss" as colors;
+@use "../../styles/variables.scss" as variables;
 
 .currentWeatherCard {
 	display: flex;
@@ -15,7 +16,7 @@
 	background-color: colors.$primary;
 	margin-left: 36px;
 	color: colors.$text-light;
-	border-radius: 6px;
+	border-radius: variables.$border-radius;
 
 	.heading {
 		margin-bottom: 0;

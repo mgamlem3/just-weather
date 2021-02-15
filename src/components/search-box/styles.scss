@@ -4,6 +4,8 @@
  * @format
  */
 
+@use "../../styles/variables.scss" as variables;
+
 .container {
 	display: flex;
 	align-items: center;
@@ -18,7 +20,7 @@
 		height: 50%;
 		width: 40vw;
 		padding: 0 4px;
-		border-radius: 6px;
+		border-radius: variables.$border-radius;
 		border: none;
 		outline: none;
 	}
