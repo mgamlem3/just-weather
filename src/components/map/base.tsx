@@ -72,7 +72,13 @@ export default class Map extends React.PureComponent<MapProps, MapState> {
 	render(): JSX.Element {
 		return (
 			<div
-				style={{ height: "100%", width: "100%", position: "relative" }}
+				style={{
+					height: "100%",
+					width: "100%",
+					position: "relative",
+					borderRadius: 6,
+					overflow: "hidden",
+				}}
 			>
 				<div
 					ref={(el) => (this.mapContainer = el || "")}

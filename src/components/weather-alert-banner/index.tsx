@@ -15,56 +15,67 @@ import styles from "./styles.scss";
 import { selectWeatherAlerts } from "../../redux/selectors/weather";
 import { WeatherAlert } from "../../types/redux/state/weather";
 
-const WeatherAlertBanner = (): JSX.Element[] => {
+const WeatherAlertBanner = (): JSX.Element => {
 	const [modalIsOpen, setModalOpen] = useState(false);
 	const alerts: WeatherAlert[] | undefined = useSelector(selectWeatherAlerts);
 
 	if (alerts) {
-		return alerts.map((alert, index) => {
-			return (
-				<Alert
-					variant='danger'
-					className={styles.weatherAlert}
-					key={index}
-				>
-					<BsExclamationTriangle className={styles.icon} />
-					{alert.event}
-					<Alert.Link
-						onClick={() => setModalOpen(true)}
-						style={{ marginLeft: 6, fontWeight: 700 }}
-					>
-						see details
-					</Alert.Link>
-					<Modal
-						show={modalIsOpen}
-						onHide={() => setModalOpen(false)}
-					>
-						<Modal.Header closeButton>{alert.event}</Modal.Header>
-						<Modal.Body>
-							<p style={{ fontWeight: 700 }}>
-								{alert.sender_name}
-							</p>
-							<p>
-								starts:{" "}
-								{moment
-									.unix(alert.start)
-									.format("dddd, MMMM Do YYYY, h:mm a")}
-							</p>
-							<p>
-								ends:{" "}
-								{moment
-									.unix(alert.end)
-									.format("dddd, MMMM Do YYYY, h:mm a")}
-							</p>
-							<p style={{ whiteSpace: "break-spaces" }}>
-								{alert.description}
-							</p>
-						</Modal.Body>
-					</Modal>
-				</Alert>
-			);
-		});
-	} else return [<div key={0} />];
+		return (
+			<React.Fragment>
+				{alerts.map((alert, index) => {
+					return (
+						<Alert
+							variant='danger'
+							className={styles.weatherAlert}
+							key={index}
+						>
+							<BsExclamationTriangle className={styles.icon} />
+							{alert.event}
+							<Alert.Link
+								onClick={() => setModalOpen(true)}
+								style={{ marginLeft: 6, fontWeight: 700 }}
+							>
+								see details
+							</Alert.Link>
+							<Modal
+								show={modalIsOpen}
+								onHide={() => setModalOpen(false)}
+							>
+								<Modal.Header closeButton>
+									{alert.event}
+								</Modal.Header>
+								<Modal.Body>
+									<p style={{ fontWeight: 700 }}>
+										{alert.sender_name}
+									</p>
+									<p>
+										starts:{" "}
+										{moment
+											.unix(alert.start)
+											.format(
+												"dddd, MMMM Do YYYY, h:mm a",
+											)}
+									</p>
+									<p>
+										ends:{" "}
+										{moment
+											.unix(alert.end)
+											.format(
+												"dddd, MMMM Do YYYY, h:mm a",
+											)}
+									</p>
+									<p style={{ whiteSpace: "break-spaces" }}>
+										{alert.description}
+									</p>
+								</Modal.Body>
+							</Modal>
+						</Alert>
+					);
+				})}
+				;
+			</React.Fragment>
+		);
+	} else return <div key={0} />;
 };
 
 export default WeatherAlertBanner;
