@@ -5,10 +5,14 @@
  */
 
 import React from "react";
+import { connect } from "react-redux";
 import { Spinner } from "react-bootstrap";
 
+import CurrentWeatherCard from "../../../current-weather-card";
+import WeatherAlertBanner from "../../../weather-alert-banner";
 import { Map, MapStyles } from "../../../map";
 import Page from "../page";
+
 import {
 	selectCoordinates,
 	selectLocation,
@@ -16,8 +20,6 @@ import {
 import { State } from "../../../../types/redux/state";
 
 import styles from "./styles.scss";
-import { connect } from "react-redux";
-import CurrentWeatherCard from "../../../current-weather-card";
 
 interface WeatherProps {
 	location: string;
@@ -32,6 +34,7 @@ class Weather extends React.PureComponent<WeatherProps> {
 			<Page>
 				<div className={styles.weatherPage}>
 					<h1 className={styles.location}>{location}</h1>
+					<WeatherAlertBanner />
 					<div className={styles.topSection}>
 						<div className={styles.map}>
 							{!coordinates.lat || !coordinates.lon ? (

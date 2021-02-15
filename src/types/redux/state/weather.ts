@@ -50,4 +50,13 @@ export interface WeatherDto {
 	lon: number;
 	timezone: string;
 	timezoneOffset: number;
+	alerts?: WeatherAlert[];
+}
+
+export interface WeatherAlert {
+	sender_name: string;
+	event: string;
+	start: number;
+	end: number;
+	description: string;
 }

@@ -5,7 +5,7 @@
  */
 
 import { State } from "../../types/redux/state";
-import { WeatherForecast } from "../../types/redux/state/weather";
+import { WeatherForecast, WeatherAlert } from "../../types/redux/state/weather";
 
 export const selectCoordinates = (
 	state: State,
@@ -22,6 +22,9 @@ export const selectCurrentWeather = (
 
 export const selectLocation = (state: State): string =>
 	state.weather.location || "";
+
+export const selectWeatherAlerts = (state: State): WeatherAlert[] | undefined =>
+	state.weather.forecast?.alerts;
 
 export const selectWeatherIsProcessing = (state: State): boolean =>
 	state.weather.isProcessing;
