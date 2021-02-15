@@ -72,7 +72,6 @@ const WeatherAlertBanner = (): JSX.Element => {
 						</Alert>
 					);
 				})}
-				;
 			</React.Fragment>
 		);
 	} else return <div key={0} />;
