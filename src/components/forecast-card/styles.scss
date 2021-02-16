@@ -1,0 +1,16 @@
+/**
+ * @author Michael Gamlem III
+ * @copyright This file is subject to the terms and conditions defined in file 'LICENSE', which is part of the source code for this project.
+ * @format
+ */
+
+@use "../../styles/colors" as colors;
+
+.forecastCard {
+	padding: 6px 8px;
+	background-color: colors.$primary-dark;
+	color: colors.$text-light;
+	white-space: pre;
+	text-align: center;
+	min-width: 140px;
+}

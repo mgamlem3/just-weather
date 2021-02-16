@@ -4,10 +4,12 @@
  * @format
  */
 
+import { AppState } from "./app";
 import { AuthState } from "./auth";
 import { WeatherState } from "./weather";
 
 export interface State {
+	app: AppState;
 	auth: AuthState;
 	weather: WeatherState;
 }

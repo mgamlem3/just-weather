@@ -27,13 +27,14 @@ export interface WeatherForecast {
 	pressure: number;
 	sunrise: Date;
 	sunset: Date;
-	temp: number;
+	temp: TemperatureInfo | number;
 	uvIndex: number;
 	visibility: number;
 	weather: WeatherDescription[];
 	windDegrees: number;
 	windGust: number;
 	windSpeed: number;
+	dt: number;
 }
 
 export interface WeatherDescription {
@@ -51,6 +52,15 @@ export interface WeatherDto {
 	timezone: string;
 	timezoneOffset: number;
 	alerts?: WeatherAlert[];
+}
+
+export interface TemperatureInfo {
+	day: number;
+	min: number;
+	max: number;
+	night: number;
+	eve: number;
+	morn: number;
 }
 
 export interface WeatherAlert {

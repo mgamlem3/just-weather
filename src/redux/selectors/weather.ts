@@ -20,6 +20,14 @@ export const selectCurrentWeather = (
 	state: State,
 ): WeatherForecast | undefined => state.weather.forecast?.current;
 
+export const selectHourlyForecast = (
+	state: State,
+): WeatherForecast[] | undefined => state.weather.forecast?.hourly;
+
+export const selectDailyForecast = (
+	state: State,
+): WeatherForecast[] | undefined => state.weather.forecast?.daily;
+
 export const selectLocation = (state: State): string =>
 	state.weather.location || "";
 

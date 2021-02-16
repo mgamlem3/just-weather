@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { Spinner } from "react-bootstrap";
 
 import CurrentWeatherCard from "../../../current-weather-card";
+import ExtendedForecast from "../../../extended-forecast";
 import WeatherAlertBanner from "../../../weather-alert-banner";
 import { Map, MapStyles } from "../../../map";
 import Page from "../page";
@@ -50,6 +51,7 @@ class Weather extends React.PureComponent<WeatherProps> {
 						</div>
 						<CurrentWeatherCard />
 					</div>
+					<ExtendedForecast />
 				</div>
 			</Page>
 		);

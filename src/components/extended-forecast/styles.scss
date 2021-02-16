@@ -4,26 +4,24 @@
  * @format
  */
 
-.weatherPage {
+@use "../../styles/colors" as colors;
+@use "../../styles/variables" as variables;
+
+.extendedForecast {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
 	align-items: center;
+	justify-content: center;
+	max-width: 86vw;
 
-	.location {
-		text-transform: capitalize;
+	.buttons {
+		margin: 12px 0 8px 0;
 	}
 
-	.topSection {
+	.forecastRow {
 		display: flex;
-		max-width: 86vw;
-
-		.map {
-			width: 60vw;
-			max-height: 80vh;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
+		width: 100%;
+		overflow-x: scroll;
+		border-radius: variables.$border-radius;
 	}
 }

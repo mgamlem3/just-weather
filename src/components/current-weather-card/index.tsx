@@ -5,24 +5,32 @@
  */
 
 import React from "react";
+import { Dispatch } from "@reduxjs/toolkit";
 import { Button, Spinner } from "react-bootstrap";
 import { connect } from "react-redux";
+import { changeTemperatureUnit } from "../../redux/actions/app";
 import {
 	selectCurrentWeather,
 	selectWeatherIsProcessing,
 } from "../../redux/selectors/weather";
+import { getTemperatureByUnit } from "../../helpers/temperature";
 import { State } from "../../types/redux/state";
 import { WeatherForecast } from "../../types/redux/state/weather";
 import WeatherIcon from "../weather-icon";
 
 import styles from "./styles.scss";
+import { selectCurrentTemperatureUnit } from "../../redux/selectors/app";
 
-// Record<string, never> works for no passed in props
-type CurrentWeatherCardProps = Record<string, never> & ReduxProps;
+type CurrentWeatherCardProps = Props & ReduxProps;
+
+interface Props {
+	setTemperatureUnit: (unit: string) => void;
+}
 
 interface ReduxProps {
 	currentForecast?: WeatherForecast;
 	isProcessing: boolean;
+	temperatureUnit: string;
 }
 
 interface CurrentWeatherCardState {
@@ -37,27 +45,13 @@ class CurrentWeatherCard extends React.PureComponent<
 		unit: "F",
 	};
 
-	getCurrentTemperature = (): number => {
-		const { currentForecast } = this.props;
-		const { unit } = this.state;
-
-		if (!currentForecast?.temp) return Number.MIN_SAFE_INTEGER;
-
-		switch (unit) {
-			case "K":
-				return currentForecast?.temp;
-			case "C":
-				return currentForecast?.temp - 273.15;
-			case "F":
-				return currentForecast?.temp * (9 / 5) - 459.67;
-		}
-
-		return Number.MIN_SAFE_INTEGER;
-	};
-
 	render(): JSX.Element {
-		const { currentForecast, isProcessing } = this.props;
-		const { unit } = this.state;
+		const {
+			currentForecast,
+			isProcessing,
+			temperatureUnit,
+			setTemperatureUnit,
+		} = this.props;
 
 		return (
 			<div className={styles.currentWeatherCard}>
@@ -78,12 +72,16 @@ class CurrentWeatherCard extends React.PureComponent<
 							{currentForecast?.weather[0].description}
 						</div>
 						<div className={styles.temperature}>
-							{Math.round(this.getCurrentTemperature())} °{unit}
+							{getTemperatureByUnit(
+								currentForecast?.temp,
+								temperatureUnit,
+							)}{" "}
+							°{temperatureUnit}
 						</div>
 						<div className={styles.unitsContainer}>
 							<Button
 								variant='link'
-								onClick={() => this.setState({ unit: "C" })}
+								onClick={() => setTemperatureUnit("C")}
 								style={{ color: "white" }}
 							>
 								°C
@@ -91,7 +89,7 @@ class CurrentWeatherCard extends React.PureComponent<
 							|
 							<Button
 								variant='link'
-								onClick={() => this.setState({ unit: "F" })}
+								onClick={() => setTemperatureUnit("F")}
 								style={{ color: "white" }}
 							>
 								°F
@@ -99,7 +97,7 @@ class CurrentWeatherCard extends React.PureComponent<
 							|
 							<Button
 								variant='link'
-								onClick={() => this.setState({ unit: "K" })}
+								onClick={() => setTemperatureUnit("K")}
 								style={{ color: "white" }}
 							>
 								°K
@@ -115,11 +113,20 @@ class CurrentWeatherCard extends React.PureComponent<
 const mapStateToProps = (state: State): ReduxProps => {
 	const currentForecast = selectCurrentWeather(state);
 	const isProcessing = selectWeatherIsProcessing(state);
+	const temperatureUnit = selectCurrentTemperatureUnit(state);
 
 	return {
 		currentForecast,
 		isProcessing,
+		temperatureUnit,
 	};
 };
 
-export default connect(mapStateToProps, null)(CurrentWeatherCard);
+const mapDispatchToProps = (dispatch: Dispatch) => {
+	return {
+		setTemperatureUnit: (unit: string) =>
+			dispatch(changeTemperatureUnit(unit)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentWeatherCard);
