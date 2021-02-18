@@ -132,7 +132,7 @@ const CurrentWeatherDetails = (): JSX.Element => {
 								<div className={styles.label}>wind speed: </div>
 							</div>
 							<div className={styles.data}>
-								{getWindMPH(currentWeather.wind_speed)}mph
+								{getWindMPH(currentWeather.wind_speed)} mph
 							</div>
 						</div>
 						<div className={styles.dataElement}>
