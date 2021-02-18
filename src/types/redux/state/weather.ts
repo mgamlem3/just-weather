@@ -20,20 +20,20 @@ export const InitialWeatherState = {
 export interface WeatherForecast {
 	lat: number;
 	lon: number;
-	cloudPercent: number;
-	dewPoint: number;
-	feelsLike: number;
+	clouds: number;
+	dew_point: number;
+	feels_like: number;
 	humidity: number;
 	pressure: number;
 	sunrise: Date;
 	sunset: Date;
 	temp: TemperatureInfo | number;
-	uvIndex: number;
+	uvi: number;
 	visibility: number;
 	weather: WeatherDescription[];
-	windDegrees: number;
+	wind_deg: number;
 	windGust: number;
-	windSpeed: number;
+	wind_speed: number;
 	dt: number;
 }
 

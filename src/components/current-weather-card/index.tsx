@@ -13,7 +13,7 @@ import {
 	selectCurrentWeather,
 	selectWeatherIsProcessing,
 } from "../../redux/selectors/weather";
-import { getTemperatureByUnit } from "../../helpers/temperature";
+import { getTemperatureByUnit } from "../../helpers/conversions";
 import { State } from "../../types/redux/state";
 import { WeatherForecast } from "../../types/redux/state/weather";
 import WeatherIcon from "../weather-icon";

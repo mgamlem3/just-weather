@@ -1,0 +1,54 @@
+/**
+ * @author Michael Gamlem III
+ * @copyright This file is subject to the terms and conditions defined in file 'LICENSE', which is part of the source code for this project.
+ * @format
+ */
+
+@use "../../styles/colors" as colors;
+@use "../../styles/variables" as variables;
+
+.currentWeatherDetails {
+	width: 100%;
+	margin-top: 12px;
+	padding: 12px;
+	background-color: colors.$primary;
+	color: colors.$text-light;
+	font-size: variables.$font-size-large;
+	border-radius: variables.$border-radius;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 222px;
+
+	.spinner {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.column {
+		width: 46%;
+		align-self: flex-start;
+		justify-self: baseline;
+
+		.dataElement {
+			display: flex;
+			justify-content: space-between;
+			margin: 8px;
+
+			.labelAndIconContainer {
+				display: flex;
+				align-items: center;
+
+				.label {
+					margin-right: 6px;
+				}
+			}
+
+			.data {
+			}
+		}
+	}
+}

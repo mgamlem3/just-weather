@@ -15,7 +15,7 @@ import { WeatherForecast } from "../../types/redux/state/weather";
 import styles from "./styles.scss";
 import { useSelector } from "react-redux";
 import { selectCurrentTemperatureUnit } from "../../redux/selectors/app";
-import { getTemperatureByUnit } from "../../helpers/temperature";
+import { getTemperatureByUnit } from "../../helpers/conversions";
 
 interface ForecastCardProps {
 	forecast: WeatherForecast;
