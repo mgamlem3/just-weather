@@ -15,7 +15,7 @@ export const getTemperatureByUnit = (
 
 	switch (unit) {
 		case "K":
-			return temp;
+			return Math.round(temp);
 		case "C":
 			return Math.round(temp - 273.15);
 		case "F":
