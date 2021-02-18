@@ -25,12 +25,19 @@ const WeatherAlertBanner = (): JSX.Element => {
 				{alerts.map((alert, index) => {
 					return (
 						<Alert
-							variant='danger'
+							variant={`${
+								alert.event.toLowerCase().includes("warning")
+									? "danger"
+									: "warning"
+							}`}
 							className={styles.weatherAlert}
 							key={index}
 						>
 							<BsExclamationTriangle className={styles.icon} />
-							{alert.event}
+							{alert.event}–until{" "}
+							{moment
+								.unix(alert.end)
+								.format("dddd, MMMM Do YYYY, h:mm a")}
 							<Alert.Link
 								onClick={() => setModalOpen(true)}
 								style={{ marginLeft: 6, fontWeight: 700 }}
