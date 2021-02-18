@@ -7,12 +7,28 @@
 @use "../../styles/colors" as colors;
 @use "../../styles/variables" as variables;
 
+$height: 208px;
+$width: 86vw;
+
 .extendedForecast {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	max-width: 86vw;
+	max-width: $width;
+	min-height: $height;
+
+	.spinnerContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: $height;
+		width: $width;
+		color: white;
+		background-color: colors.$primary-dark;
+		border-radius: variables.$border-radius;
+
+	}
 
 	.buttons {
 		margin: 12px 0 8px 0;
