@@ -22,6 +22,7 @@ import { State } from "../../../../types/redux/state";
 
 import styles from "./styles.scss";
 import CurrentWeatherDetails from "../../../current-weather-details";
+import TemperatureGraph from "../../../temperature-graph";
 
 interface WeatherProps {
 	location: string;
@@ -54,6 +55,7 @@ class Weather extends React.PureComponent<WeatherProps> {
 					</div>
 					<ExtendedForecast />
 					<CurrentWeatherDetails />
+					<TemperatureGraph />
 				</div>
 			</Page>
 		);

@@ -110,14 +110,14 @@ const getIconForCode = (code: number, iconCode: string): JSX.Element => {
 		case 781:
 			return <WiTornado size={ICON_SIZE} />;
 		case 800: {
-			if (iconCode?.endsWith("d")) return <WiDaySunny size={ICON_SIZE} />;
-			else return <WiStars size={ICON_SIZE} />;
+			if (iconCode?.endsWith("n")) return <WiStars size={ICON_SIZE} />;
+			else return <WiDaySunny size={ICON_SIZE} />;
 		}
 		case 801:
 		case 802: {
-			if (iconCode?.endsWith("d"))
-				return <WiDayCloudy size={ICON_SIZE} />;
-			else return <WiNightAltCloudy size={ICON_SIZE} />;
+			if (iconCode?.endsWith("n"))
+				return <WiNightAltCloudy size={ICON_SIZE} />;
+			else return <WiDayCloudy size={ICON_SIZE} />;
 		}
 		case 803:
 			return <WiCloud size={ICON_SIZE} />;
