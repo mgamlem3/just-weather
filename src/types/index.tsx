@@ -6,5 +6,7 @@
 
 export interface RoutesDto {
 	Home: string;
+	Privacy: string;
+	Terms: string;
 	Weather: string;
 }

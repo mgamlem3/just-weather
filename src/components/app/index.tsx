@@ -10,6 +10,8 @@ import { createBrowserHistory } from "history";
 import { Routes } from "./routes";
 
 const Home = React.lazy(() => import("./pages/home"));
+const Privacy = React.lazy(() => import("./pages/privacy"));
+const Terms = React.lazy(() => import("./pages/terms"));
 const Weather = React.lazy(() => import("./pages/weather"));
 
 import "../../styles/base.scss";
@@ -24,6 +26,8 @@ const App: React.FunctionComponent = () => {
 			<Suspense fallback={<div>Loading...</div>}>
 				<Router history={customHistory}>
 					<Switch>
+						<Route path={Routes.Privacy} component={Privacy} />
+						<Route path={Routes.Terms} component={Terms} />
 						<Route path={Routes.Weather} component={Weather} />
 						<Route path={Routes.Home}>
 							<Home />
