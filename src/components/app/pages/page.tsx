@@ -7,6 +7,7 @@
 import React from "react";
 
 import Nav from "../../nav";
+import Footer from "../../footer";
 
 import styles from "../../../styles/base.scss";
 
@@ -17,7 +18,7 @@ const Page: React.FunctionComponent = ({ children }) => {
 			<main>
 				<div className={styles.app}>{children}</div>
 			</main>
-			{/* <Footer /> */}
+			<Footer />
 		</React.Fragment>
 	);
 };

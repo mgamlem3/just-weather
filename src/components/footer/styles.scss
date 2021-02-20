@@ -1,0 +1,32 @@
+/**
+ * @author Michael Gamlem III
+ * @copyright This file is subject to the terms and conditions defined in file 'LICENSE', which is part of the source code for this project.
+ * @format
+ */
+
+@use "../../styles/colors" as colors;
+
+.footer {
+	background-color: colors.$primary-dark;
+	min-height: 100px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	color: colors.$text-light;
+	margin-top: 12px;
+
+	.copyright {
+		font-style: italic;
+	}
+
+	.links {
+		min-width: 16%;
+		max-width: 33%;
+		flex-grow: 0.1;
+		display: flex;
+		justify-content: space-between;
+		a {
+			color: colors.$text-light;
+		}
+	}
+}
