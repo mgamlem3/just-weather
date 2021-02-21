@@ -8,18 +8,27 @@ import React from "react";
 import { Dispatch } from "@reduxjs/toolkit";
 import { Button, Spinner } from "react-bootstrap";
 import { connect } from "react-redux";
+import firebase from "firebase";
+
+import WeatherIcon from "../weather-icon";
+
 import { changeTemperatureUnit } from "../../redux/actions/app";
 import {
 	selectCurrentWeather,
 	selectWeatherIsProcessing,
 } from "../../redux/selectors/weather";
+import { selectCurrentTemperatureUnit } from "../../redux/selectors/app";
+import { selectCurrentUser } from "../../redux/selectors/auth";
 import { getTemperatureByUnit } from "../../helpers/conversions";
+import {
+	getTemperatureUnit,
+	updateTemperatureUnit,
+} from "../../helpers/firebase";
+
 import { State } from "../../types/redux/state";
 import { WeatherForecast } from "../../types/redux/state/weather";
-import WeatherIcon from "../weather-icon";
 
 import styles from "./styles.scss";
-import { selectCurrentTemperatureUnit } from "../../redux/selectors/app";
 
 type CurrentWeatherCardProps = Props & ReduxProps;
 
@@ -31,27 +40,31 @@ interface ReduxProps {
 	currentForecast?: WeatherForecast;
 	isProcessing: boolean;
 	temperatureUnit: string;
+	currentUser?: firebase.User | null;
 }
 
-interface CurrentWeatherCardState {
-	unit: string;
-}
+class CurrentWeatherCard extends React.PureComponent<CurrentWeatherCardProps> {
+	async componentDidUpdate(prevProps) {
+		const { currentUser, setTemperatureUnit } = this.props;
 
-class CurrentWeatherCard extends React.PureComponent<
-	CurrentWeatherCardProps,
-	CurrentWeatherCardState
-> {
-	state = {
-		unit: "F",
+		if (!prevProps.currentUser && currentUser) {
+			const unit = await getTemperatureUnit(currentUser.uid);
+			if (unit) setTemperatureUnit(unit);
+		}
+	}
+
+	handleUnitClick = (unit: string) => {
+		const { setTemperatureUnit, currentUser } = this.props;
+
+		if (currentUser?.uid) {
+			updateTemperatureUnit(currentUser.uid, unit);
+		}
+
+		setTemperatureUnit(unit);
 	};
 
 	render(): JSX.Element {
-		const {
-			currentForecast,
-			isProcessing,
-			temperatureUnit,
-			setTemperatureUnit,
-		} = this.props;
+		const { currentForecast, isProcessing, temperatureUnit } = this.props;
 
 		return (
 			<div className={styles.currentWeatherCard}>
@@ -81,7 +94,7 @@ class CurrentWeatherCard extends React.PureComponent<
 						<div className={styles.unitsContainer}>
 							<Button
 								variant='link'
-								onClick={() => setTemperatureUnit("C")}
+								onClick={() => this.handleUnitClick("C")}
 								style={{ color: "white" }}
 							>
 								°C
@@ -89,7 +102,7 @@ class CurrentWeatherCard extends React.PureComponent<
 							|
 							<Button
 								variant='link'
-								onClick={() => setTemperatureUnit("F")}
+								onClick={() => this.handleUnitClick("F")}
 								style={{ color: "white" }}
 							>
 								°F
@@ -97,7 +110,7 @@ class CurrentWeatherCard extends React.PureComponent<
 							|
 							<Button
 								variant='link'
-								onClick={() => setTemperatureUnit("K")}
+								onClick={() => this.handleUnitClick("K")}
 								style={{ color: "white" }}
 							>
 								°K
@@ -114,11 +127,13 @@ const mapStateToProps = (state: State): ReduxProps => {
 	const currentForecast = selectCurrentWeather(state);
 	const isProcessing = selectWeatherIsProcessing(state);
 	const temperatureUnit = selectCurrentTemperatureUnit(state);
+	const currentUser = selectCurrentUser(state);
 
 	return {
 		currentForecast,
 		isProcessing,
 		temperatureUnit,
+		currentUser,
 	};
 };
 

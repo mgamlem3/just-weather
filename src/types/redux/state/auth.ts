@@ -7,7 +7,7 @@
 import firebase from "firebase";
 
 export interface AuthState {
-	user?: firebase.auth.UserCredential | null;
+	user?: firebase.User | null;
 	isProcessing: boolean;
 	signInSuccess?: boolean;
 	signUpSuccess?: boolean;
