@@ -5,15 +5,24 @@
  */
 
 @use "../../styles/colors" as colors;
+@use "../../styles/variables" as variables;
+@use "../../styles/media-queries" as mediaQueries;
 
 .footer {
 	background-color: colors.$primary-dark;
 	min-height: 100px;
+	width: 100vw;
+	overflow: hidden;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	color: colors.$text-light;
 	margin-top: 12px;
+
+	@include mediaQueries.phone {
+		flex-direction: column;
+		font-size: variables.$font-size-regular;
+	}
 
 	.copyright {
 		font-style: italic;
@@ -27,6 +36,10 @@
 		justify-content: space-between;
 		a {
 			color: colors.$text-light;
+
+		@include mediaQueries.phone {
+			margin: 0 6px;
+		}
 		}
 	}
 }

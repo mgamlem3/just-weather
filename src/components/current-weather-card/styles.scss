@@ -6,6 +6,7 @@
 
 @use "../../styles/colors.scss" as colors;
 @use "../../styles/variables.scss" as variables;
+@use "../../styles/media-queries" as mediaQueries;
 
 .currentWeatherCard {
 	display: flex;
@@ -17,6 +18,11 @@
 	margin-left: 36px;
 	color: colors.$text-light;
 	border-radius: variables.$border-radius;
+
+	@include mediaQueries.phone {
+		width: 86vw;
+		margin: 0 0 12px 0;
+	}
 
 	.heading {
 		margin-bottom: 0;
