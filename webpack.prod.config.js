@@ -9,7 +9,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 const compressionRegex = /\.(js|png|jpg|html|css)$/;
@@ -34,7 +34,7 @@ module.exports = {
 						loader: "css-loader",
 						options: {
 							modules: {
-								localIdentName: "[hash:base64]",
+								localIdentName: "[fullhash]",
 							},
 						},
 					},
@@ -68,7 +68,7 @@ module.exports = {
 				},
 			},
 		},
-		minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
+		minimizer: [new TerserPlugin(), new CssMinimizerWebpackPlugin()],
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -77,18 +77,16 @@ module.exports = {
 			template: "./public/index.html",
 		}),
 		new MiniCssExtractPlugin({
-			filename: "[hash].css",
+			filename: "[fullhash].css",
 			chunkFilename: "[id].css",
 			ignoreOrder: false,
 		}),
 		new CompressionPlugin({
-			cache: true,
 			filename: "[path][base].br",
 			algorithm: "brotliCompress",
 			test: compressionRegex,
 		}),
 		new CompressionPlugin({
-			cache: true,
 			filename: "[path][base].gz",
 			test: compressionRegex,
 		}),

@@ -6,7 +6,7 @@
 
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import moment from "moment";
+const moment = React.lazy(() => import("moment"));
 
 import { Alert, Modal } from "react-bootstrap";
 import { BsExclamationTriangle } from "react-icons/bs";

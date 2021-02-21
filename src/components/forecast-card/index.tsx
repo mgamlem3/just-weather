@@ -5,7 +5,7 @@
  */
 
 import React from "react";
-import moment from "moment";
+const moment = React.lazy(() => import("moment"));
 
 import WeatherIcon from "../weather-icon";
 
