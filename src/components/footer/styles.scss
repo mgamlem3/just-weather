@@ -37,9 +37,9 @@
 		a {
 			color: colors.$text-light;
 
-		@include mediaQueries.phone {
-			margin: 0 6px;
-		}
+			@include mediaQueries.phone {
+				margin: 0 6px;
+			}
 		}
 	}
 }
