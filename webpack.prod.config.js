@@ -34,7 +34,7 @@ module.exports = {
 						loader: "css-loader",
 						options: {
 							modules: {
-								localIdentName: "[fullhash]",
+								localIdentName: "[contenthash]",
 							},
 						},
 					},
@@ -42,7 +42,7 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.(jpg|png)$/,
+				test: /\.(jpg|png|ico)$/,
 				loader: "file-loader",
 			},
 		],
@@ -77,7 +77,7 @@ module.exports = {
 			template: "./public/index.html",
 		}),
 		new MiniCssExtractPlugin({
-			filename: "[fullhash].css",
+			filename: "[contenthash].css",
 			chunkFilename: "[id].css",
 			ignoreOrder: false,
 		}),
