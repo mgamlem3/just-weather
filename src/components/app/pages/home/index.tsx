@@ -13,7 +13,6 @@ import styles from "./styles.scss";
 const Home: React.FunctionComponent = () => {
 	return (
 		<Page>
-			<div style={{ color: "red" }}>hello world</div>
 			<div className={styles.map}>
 				<BrowserLocationMap mapStyle={MapStyles.Base} />
 			</div>
